@@ -1,14 +1,17 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from '../components/Navbar';
-// import SideMenu from '../components/SideMenu';
-// import Footer from '../components/Footer';
-// import MainContent from '../components/MainContent';
+import hero from '../img/logo.png'
+import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
     },
+    Media: {
+        height: '100%',
+        width: '100%'
+      }
   }));
   
   function Home() {
@@ -17,7 +20,9 @@ const useStyles = makeStyles(theme => ({
     return (
       <div className={classes.root}>
         <Navbar />
- 
+        <Container>
+        <img src={hero} alt="hero" className={classes.Media} />
+        </Container>
       </div>
     );
   }
