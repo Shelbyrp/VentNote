@@ -48,9 +48,9 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
-          <Route exact path='/map' component={Map} />
           <Route exact path='/journal' component={Journal} />
-          <Route exact path='/lay' component={Play} />
+          <Route exact path='/map' component={Map} />
+          <Route exact path='/play' component={Play} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           {/* <Route exact path="/" component={Home}>
             </Route>
@@ -66,7 +66,7 @@ function App() {
               <Play/>
             </Route> */}
         </Switch>
-    </Router>
+      </Router>
     </ApolloProvider >
   );
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { MenuItem } from '@material-ui/core';
 import logo from '../img/logo.png';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -18,6 +18,10 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         flexGrow: 1,
+        color: '#fff',
+        textDecoration: 'none',
+        fontSize: '1rem',
+        marginRight: theme.spacing(2),
     },
     logo: {
         maxWidth: 160,
@@ -36,29 +40,29 @@ function Navbar() {
             <Toolbar>
                 <img src={logo} alt="logo" className={classes.logo} />
                 <MenuItem>
-                    <Typography variant='h6' className={classes.title}>
+                <Link variant='h6' className={classes.title} to="/">
                         Home
-                    </Typography>
+                    </Link>
                 </MenuItem>
                 <MenuItem>
-                    <Typography variant='h6' className={classes.title}>
+                    <Link variant='h6' className={classes.title} to="/about">
                         About
-                    </Typography>
+                    </Link>
                 </MenuItem>
                 <MenuItem>
-                    <Typography variant='h6' className={classes.title}>
-                        Map
-                    </Typography>
-                </MenuItem>
-                <MenuItem>
-                    <Typography variant='h6' className={classes.title}>
+                <Link variant='h6' className={classes.title} to="/journal">
                         Journal
-                    </Typography>
+                    </Link>
                 </MenuItem>
                 <MenuItem>
-                    <Typography variant='h6' className={classes.title}>
+                <Link variant='h6' className={classes.title} to="/map">
+                        Map
+                    </Link>
+                </MenuItem>
+                <MenuItem>
+                <Link variant='h6' className={classes.title} to="/play">
                         Play
-                    </Typography>
+                    </Link>
                 </MenuItem>
             </Toolbar>
         </AppBar>
