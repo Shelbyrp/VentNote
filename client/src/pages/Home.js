@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Navbar from '../components/Navbar';
-import hero from '../img/hero.png'
+import hero from '../img/VNHero.png'
 import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -33,7 +32,7 @@ function Home() {
 
     return (
         <div className={classes.root}>
-            <Navbar />
+           
             <Container disableGutters maxWidth={false} className={classes.Container}>
                 <img src={hero} alt="hero" className={classes.Media} />
                 <h1 className={classes.heading}>Adventures Worth Noting</h1>
