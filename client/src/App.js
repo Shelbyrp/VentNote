@@ -6,13 +6,14 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import About from './pages/About';
 import Journal from './pages/Journal';
 import Map from './pages/Map';
 import Play from './pages/Play';
+import Navbar from './components/Navbar';
 
 
 // Construct our main GraphQL API endpoint
@@ -43,13 +44,17 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
-          <div className="container">
-            <Route exact path="/">
-              <Home />
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/map' component={Map} />
+          <Route exact path='/journal' component={Journal} />
+          <Route exact path='/lay' component={Play} />
+          <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+          {/* <Route exact path="/" component={Home}>
             </Route>
-            <Route exact path="/about">
-              <About/>
+            <Route exact path="/about" component={About}>
             </Route>
             <Route exact path="/journal">
             <Journal/>
@@ -59,11 +64,10 @@ function App() {
             </Route>
             <Route exact path="/play">
               <Play/>
-            </Route>
-          </div>
-        </div>
-      </Router>
-    </ApolloProvider>
+            </Route> */}
+        </Switch>
+    </Router>
+    </ApolloProvider >
   );
 }
 
