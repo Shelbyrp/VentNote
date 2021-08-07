@@ -13,6 +13,8 @@ import About from './pages/About';
 import Journal from './pages/Journal';
 import Map from './pages/Map';
 import Play from './pages/Play';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
 
 
@@ -51,6 +53,8 @@ function App() {
           <Route exact path='/journal' component={Journal} />
           <Route exact path='/map' component={Map} />
           <Route exact path='/play' component={Play} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={Signup} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           {/* <Route exact path="/" component={Home}>
             </Route>
