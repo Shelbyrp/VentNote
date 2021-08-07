@@ -3,12 +3,16 @@ import { makeStyles } from '@material-ui/core/styles';
 // import hero from '../img/VNHero.png'
 import { TextField } from '@material-ui/core';
 
+
 import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
+// import Typography from '@material-ui/core/Typography';
+
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,6 +29,12 @@ const useStyles = makeStyles(theme => ({
         },
         '& .MuiButtonBase-root': {
             margin: theme.spacing(2),
+        },
+        errorMessage: {
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
         }
     }
 }));
@@ -109,15 +119,14 @@ function Signup() {
             </div>
         </form>
         )}
-
-        {error && (
-          <div className="my-3 p-3 bg-danger text-white">
+<div className={classes.root}>{error && (
+          <div >
             {error.message}
           </div>
-        )}
+        )}</div>
+        </div>
       </div>
     </div>
-  </div>
 </main>
     );
 }
