@@ -1,44 +1,63 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
+
+import JournalList from '../components/JournalList';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import hero from '../img/VNHero.png'
-import { Container } from '@material-ui/core';
+
+import { QUERY_JOURNALS} from '../utils/queries';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
+       menuButton: {
+        marginRight: theme.spacing(2),
     },
-    Media: {
-        height: '100%',
-        width: '100%',
-        zIndex: -10,
+    title: {
+        flexGrow: 1,
+        color: '#fff',
+        textDecoration: 'none',
+        fontSize: '1rem',
+        marginRight: theme.spacing(2),
     },
-    Container: {
-        position: 'relative',
-        height: '100vh',
-        width: '100%',
-        padding: '0px',
+    logo: {
+        maxWidth: 160,
     },
-    heading: {
-        position: 'absolute',
-        top: '40%',
-        left: '20%',
-        fontSize: '6rem',
-        color: '#fff'
-    }
+    MuiAppBar: {
+        color: '#fff',
+        background: '#03313d',
+    },
 }));
 
-function Journal() {
+const Journal = () => {
     const classes = useStyles();
+  const { loading, data } = useQuery(QUERY_JOURNALS);
+  const journals = data?.journals || [];
 
-    return (
-        <div className={classes.root}>
-           
-            <Container disableGutters maxWidth={false} className={classes.Container}>
-                <img src={hero} alt="hero" className={classes.Media} />
-                <h1 className={classes.heading}>journal</h1>
-            </Container>
+  return (
+    <main>
+      <div className="flex-row justify-center">
+        <div
+          className="col-12 col-md-10 mb-3 p-3"
+          style={{ border: '1px dotted #1a1a1a' }}
+        >
         </div>
-    );
-}
+        <div className="col-12 col-md-8 mb-3">
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <JournalList
+              journals={journals}
+              title="Some Journals"
+            />
+          )}
+        </div>
+        <div>
+                        <Link className="text-light" to="/addjournal">
+                           Add Journal
+                        </Link>
+                    </div>
+      </div>
+    </main>
+  );
+};
 
 export default Journal;

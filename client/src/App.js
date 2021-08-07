@@ -16,6 +16,7 @@ import Play from './pages/Play';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
+import AddJournal from './pages/AddJournal';
 
 
 // Construct our main GraphQL API endpoint
@@ -51,24 +52,12 @@ function App() {
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
           <Route exact path='/journal' component={Journal} />
+          <Route exact path='/addjournal' component={AddJournal} />
           <Route exact path='/map' component={Map} />
           <Route exact path='/play' component={Play} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
-          {/* <Route exact path="/" component={Home}>
-            </Route>
-            <Route exact path="/about" component={About}>
-            </Route>
-            <Route exact path="/journal">
-            <Journal/>
-            </Route>
-            <Route exact path="/map">
-              <Map/>
-            </Route>
-            <Route exact path="/play">
-              <Play/>
-            </Route> */}
         </Switch>
       </Router>
     </ApolloProvider >
@@ -78,18 +67,3 @@ function App() {
 export default App;
 
 
-
-
-
-
-
-// import React from 'react';
-// import './App.css';
-// // import Navbar from './components/Navbar';
-// import Home from './pages/Home';
-
-// function App() {
-//   return     <Home />
-// }
-
-// export default App;
