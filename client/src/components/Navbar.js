@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
     MuiAppBar: {
         color: '#fff',
         background: '#03313d',
+        position: 'sticky'
     },
 }));
 

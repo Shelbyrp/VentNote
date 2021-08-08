@@ -32,7 +32,6 @@ function About() {
 
     return (
         <div className={classes.root}>
-           
             <Container disableGutters maxWidth={false} className={classes.Container}>
                 <img src={hero} alt="hero" className={classes.Media} />
                 <h1 className={classes.heading}>about</h1>

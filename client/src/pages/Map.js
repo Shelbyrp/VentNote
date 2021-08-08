@@ -1,44 +1,48 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import hero from '../img/VNHero.png'
-import { Container } from '@material-ui/core';
+import React from 'react'
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-    },
-    Media: {
-        height: '100%',
-        width: '100%',
-        zIndex: -10,
-    },
-    Container: {
-        position: 'relative',
-        height: '100vh',
-        width: '100%',
-        padding: '0px',
-    },
-    heading: {
-        position: 'absolute',
-        top: '40%',
-        left: '20%',
-        fontSize: '6rem',
-        color: '#fff'
-    }
-}));
 
-function Map() {
-    const classes = useStyles();
+const containerStyle = {
+    width: '100%',
+    height: '90vh'
+};
 
-    return (
-        <div className={classes.root}>
-           
-            <Container disableGutters maxWidth={false} className={classes.Container}>
-                <img src={hero} alt="hero" className={classes.Media} />
-                <h1 className={classes.heading}>Map</h1>
-            </Container>
-        </div>
-    );
+const center = {
+    lat: -10.51470028456413,
+    lng: -78.00704281196573
+};
+
+
+function MyComponent() {
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        // mapIds: ['eb3894643d1781b'],
+        googleMapsApiKey: "AIzaSyCLD89y6zAJjP2lxnmtni5-ck-311J_Rk4"
+    })
+
+    const [map, setMap] = React.useState(null)
+
+    const onLoad = React.useCallback(function callback(map) {
+        const bounds = new window.google.maps.LatLngBounds();
+        map.fitBounds(bounds);
+        setMap(map)
+    }, [])
+
+    const onUnmount = React.useCallback(function callback(map) {
+        setMap(null)
+    }, [])
+
+    return isLoaded ? (
+        <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={2.5}
+            onLoad={onLoad}
+            onUnmount={onUnmount}
+        >
+            <></>
+        </GoogleMap>
+    ) : <></>
 }
 
-export default Map;
+export default React.memo(MyComponent)

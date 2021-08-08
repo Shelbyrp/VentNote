@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     gridContainer: {
         paddingLeft: "40px",
         paddingRight: "40px",
-        marginTop: '150px'
+        // marginTop: '150px'
     }
 });
 
