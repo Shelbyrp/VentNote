@@ -23,27 +23,17 @@ const Journal = () => {
 
     return (
         <main>
-
-            <Grid
-                container
-                spacing={4}
-                className={classes.gridContainer}
-                justify="center"
-            >
-                <Grid item xs={12} sm={6} md={4}>
-                    <Link className="text-light" to="/addjournal">
-                        Add Journal
-                    </Link>
-                    {loading ? (
-                        <div>Loading...</div>
-                    ) : (
-                        <JournalList
-                            journals={journals}
-                            title="Some Journals"
-                        />
-                    )}
-                </Grid>
-            </Grid>
+            <Link className="text-light" to="/addjournal">
+                Add Journal
+            </Link>
+            {loading ? (
+                <div>Loading...</div>
+            ) : (
+                <JournalList
+                    journals={journals}
+                    title="Some Journals"
+                />
+            )}
         </main>
     );
 };

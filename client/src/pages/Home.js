@@ -7,21 +7,23 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
     },
-    Media: {
-        height: '100%',
-        width: '100%',
-        zIndex: -10,
+    hero: {
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1511225070737-5af5ac9a690d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')`,
+        height: "100vh",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "#fff"
     },
-    Container: {
-        position: 'relative',
-        height: '100vh',
-        width: '100%',
-        padding: '0px',
-    },
+    
     heading: {
         position: 'absolute',
-        top: '40%',
-        left: '20%',
+        top: '30%',
+        left: '15%',
         fontSize: '6rem',
         color: '#fff'
     }
@@ -32,9 +34,9 @@ function Home() {
 
     return (
         <div className={classes.root}>
-           
+
             <Container disableGutters maxWidth={false} className={classes.Container}>
-                <img src={hero} alt="hero" className={classes.Media} />
+                <div className={classes.hero} />
                 <h1 className={classes.heading}>Adventures Worth Noting</h1>
             </Container>
         </div>
@@ -42,3 +44,4 @@ function Home() {
 }
 
 export default Home;
+
