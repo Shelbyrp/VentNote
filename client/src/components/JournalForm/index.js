@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { ADD_JOURNAL } from '../../utils/mutations';
 import { QUERY_JOURNALS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const JournalForm = () => {
-  const [journalText, setJournalText] = useState('');
+const useStyles = makeStyles(theme => ({
+  root: {
+      errorMessage: {
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
+      }
+  }
+}));
 
+const JournalForm = () => {
+  const classes = useStyles();
+  const [journalText, setJournalText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addJournal, { error }] = useMutation(ADD_JOURNAL, {
@@ -47,14 +60,14 @@ const JournalForm = () => {
 
       setJournalText('');
     } catch (err) {
-      console.error(err);
+      window.location.href='/journal';
     }
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'JournalText' && value.length <= 280) {
+    if (name === 'journalText' && value.length <= 280) {
       setJournalText(value);
       setCharacterCount(value.length);
     }
@@ -62,7 +75,7 @@ const JournalForm = () => {
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
+      <h3>What latest experience do you want to record?</h3>
 
       {Auth.loggedIn() ? (
         <>
@@ -73,30 +86,28 @@ const JournalForm = () => {
             Character Count: {characterCount}/280
           </p>
           <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
+            className={classes.root} onSubmit={handleFormSubmit}
           >
-            <div className="col-12 col-lg-9">
-              <textarea
+              <TextareaAutosize
                 name="journalText"
                 placeholder="Here's a new journal..."
                 value={journalText}
+                required
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
-              ></textarea>
-            </div>
+              ></TextareaAutosize>
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Add Journal
               </button>
             </div>
-            {error && (
+            {/* {error && (
               <div className="col-12 my-3 bg-danger text-white p-3">
                 {error.message}
               </div>
-            )}
+            )} */}
           </form>
         </>
       ) : (
@@ -110,3 +121,5 @@ const JournalForm = () => {
 };
 
 export default JournalForm;
+
+
