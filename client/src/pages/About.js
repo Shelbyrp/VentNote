@@ -67,7 +67,7 @@ function About() {
     return (
         <div className={classes.root}>
             <Box className={classes.hero}>
-                <Box>React Blog</Box>
+                <Box>About VentNote</Box>
             </Box>
             <Container maxWidth="lg" className={classes.blogsContainer}>
                 <Grid container spacing={3}>
