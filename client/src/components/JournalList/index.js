@@ -90,6 +90,9 @@ const JournalList = ({
                                             )}
                                         </Typography>
                                         <Typography>
+                                        <div className="card-body bg-light p-2">
+                                                <h4>{journal.journalTitle}</h4>
+                                            </div>
                                             <div className="card-body bg-light p-2">
                                                 <p>{journal.journalText}</p>
                                             </div>
