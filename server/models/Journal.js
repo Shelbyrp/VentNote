@@ -6,7 +6,7 @@ const journalSchema = new Schema({
     type: String,
     required: 'You need to leave a journal entry!',
     minlength: 1,
-    maxlength: 280,
+    maxlength: 500,
     trim: true,
   },
   journalAuthor: {

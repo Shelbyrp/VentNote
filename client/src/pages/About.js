@@ -102,27 +102,3 @@ function About() {
 
 export default About;
 
-{/* <div className={classes.root}>
-<Container maxWidth="lg" className={classes.blogsContainer}>
-    <Typography variant="h4" className={classes.blogTitle}>
-        About
-    </Typography>
-    <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={4}>
-            <Typography gutterBottom variant="h5" component="h2">
-                React useContext
-            </Typography>
-            <Grid item xs={6}>
-            <Typography gutterBottom variant="h5" component="h2">
-                React useContext
-            </Typography>
-            </Grid>
-            <Grid item xs={6}>
-            <Typography gutterBottom variant="h5" component="h2">
-                React useContext
-            </Typography>
-            </Grid>
-        </Grid>
-    </Grid>
-</Container>
-</div> */}

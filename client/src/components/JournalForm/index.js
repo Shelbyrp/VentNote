@@ -70,7 +70,7 @@ const JournalForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'journalText' && value.length <= 280) {
+    if (name === 'journalText' && value.length <= 500) {
       setJournalText(value);
       setCharacterCount(value.length);
     } 
@@ -88,10 +88,10 @@ const JournalForm = () => {
       {Auth.loggedIn() ? (
         <>
           <p
-            className={`m-0 ${characterCount === 280 || error ? 'text-danger' : ''
+            className={`m-0 ${characterCount === 500 || error ? 'text-danger' : ''
               }`}
           >
-            Character Count: {characterCount}/280
+            Character Count: {characterCount}/500
           </p>
           <form
             className={classes.root} onSubmit={handleFormSubmit}
@@ -110,7 +110,7 @@ const JournalForm = () => {
               placeholder="Here's a new journal..."
               value={journalText}
               required
-              className="form-input w-200"
+              className="form-input w-500"
               style={{ lineHeight: '1.5', resize: 'vertical' }}
               onChange={handleChange}
             ></TextareaAutosize>

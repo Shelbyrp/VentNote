@@ -2,19 +2,22 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 
 import JournalList from '../components/JournalList';
-import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 
 import { QUERY_JOURNALS } from '../utils/queries';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     gridContainer: {
         paddingLeft: "40px",
         paddingRight: "40px",
         // marginTop: '150px'
-    }
-});
+    },
+    blogsContainer: {
+        paddingTop: theme.spacing(3)
+    },
+}));
 
 const Journal = () => {
     const classes = useStyles();
@@ -23,6 +26,7 @@ const Journal = () => {
 
     return (
         <main>
+               <Container maxWidth="lg" className={classes.blogsContainer}>
             <Button variant="contained" color="primary" href="/addjournal">
                 Add Journal
             </Button>
@@ -34,6 +38,7 @@ const Journal = () => {
                     title="Some Journals"
                 />
             )}
+            </Container>
         </main>
     );
 };

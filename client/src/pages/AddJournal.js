@@ -5,9 +5,7 @@ import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles({
     gridContainer: {
-        paddingLeft: "40px",
-        paddingRight: "40px",
-        marginTop: '150px'
+
     }
 });
 
@@ -20,8 +18,6 @@ const AddJournal = () => {
 
         <main>
             <div>
-
-            </div>
             <Grid
                 container
                 spacing={4}
@@ -32,6 +28,7 @@ const AddJournal = () => {
                     <JournalForm />
                 </Grid>
             </Grid>
+            </div>
         </main>
     );
 };

@@ -25,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
     },
     card: {
         maxWidth: "100%",
+        margin: "10px 10px",
+        background: "#efefef"
     },
     media: {
         height: 240
@@ -36,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
     },
     author: {
         display: "flex"
+    },
+    journalText: {
+        display: "flex",
+        flex: 'wrap'
     }
 }));
 
@@ -47,9 +53,6 @@ const JournalList = ({
 }) => {
 
     const classes = useStyles();
-    if (!journals.length) {
-        return <h3>No Journals Yet</h3>;
-    }
 
     return (
         <div className="App">
@@ -60,7 +63,7 @@ const JournalList = ({
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4}>
                         {journals && journals.map((journal) => (
-                            <Card className={classes.root}>
+                            <Card className={classes.card}>
                                 <CardActionArea>
                                     {/* <CardMedia
                                         className={classes.media}
@@ -90,10 +93,10 @@ const JournalList = ({
                                             )}
                                         </Typography>
                                         <Typography>
-                                        <div className="card-body bg-light p-2">
+                                            <div className="card-body bg-light p-2">
                                                 <h4>{journal.journalTitle}</h4>
                                             </div>
-                                            <div className="card-body bg-light p-2">
+                                            <div className={classes.journalText}>
                                                 <p>{journal.journalText}</p>
                                             </div>
                                         </Typography>
@@ -103,9 +106,12 @@ const JournalList = ({
                                     <Button size="small" color="primary">
                                         Share
                                     </Button>
-                                    <Button size="small" color="primary">
-                                        Learn More
-                                    </Button>
+                                    <Link
+                                        className="btn btn-primary btn-block btn-squared"
+                                        to={`/journals/${journal._id}`}
+                                    >
+                                        READ MORE
+                                    </Link>
                                 </CardActions>
                             </Card>
                         ))}
