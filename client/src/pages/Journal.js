@@ -40,18 +40,3 @@ const Journal = () => {
 
 export default Journal;
 
-
-// {loading ? (
-//     <div>Loading...</div>
-//   ) : (
-//     <JournalList
-//       journals={journals}
-//       title="Some Journals"
-//     />
-//   )}
-
-//   <div>
-//   <Link className="text-light" to="/addjournal">
-//      Add Journal
-//   </Link>
-// </div>

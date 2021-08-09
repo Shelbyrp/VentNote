@@ -33,6 +33,10 @@ const useStyles = makeStyles(theme => ({
         background: '#03313d',
         position: 'sticky'
     },
+    button: {
+        color: '#fff',
+        background: '#03313d',
+    }
 }));
 
 const NavBar = () => {
@@ -69,7 +73,7 @@ const NavBar = () => {
                                     <Link variant='h6' className={classes.title} to="/play">
                                         Play
                                     </Link>
-                                    <button onClick={logout}>
+                                    <button color="primary" onClick={logout}>
                                         Logout
                                     </button>
                                 </MenuItem>

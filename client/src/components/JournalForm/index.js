@@ -11,12 +11,12 @@ import Auth from '../../utils/auth';
 
 const useStyles = makeStyles(theme => ({
   root: {
-      errorMessage: {
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center'
-      }
+    errorMessage: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
   }
 }));
 
@@ -60,7 +60,7 @@ const JournalForm = () => {
 
       setJournalText('');
     } catch (err) {
-      window.location.href='/journal';
+      window.location.href = '/journal';
     }
   };
 
@@ -88,16 +88,15 @@ const JournalForm = () => {
           <form
             className={classes.root} onSubmit={handleFormSubmit}
           >
-              <TextareaAutosize
-                name="journalText"
-                placeholder="Here's a new journal..."
-                value={journalText}
-                required
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></TextareaAutosize>
-
+            <TextareaAutosize
+              name="journalText"
+              placeholder="Here's a new journal..."
+              value={journalText}
+              required
+              className="form-input w-200"
+              style={{ lineHeight: '1.5', resize: 'vertical' }}
+              onChange={handleChange}
+            ></TextareaAutosize>
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Add Journal

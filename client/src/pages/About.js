@@ -1,27 +1,20 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
     appBar: {
         backgroundColor: "#fff"
     },
     hero: {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1558981852-426c6c22a060?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80')`,
-        height: "500px",
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1504317083653-6843c8aa144f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80')`,
+        height: "400px",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
@@ -60,28 +53,76 @@ const useStyles = makeStyles((theme) => ({
     paginationContainer: {
         display: "flex",
         justifyContent: "center"
-    }
+    },
+    Typography: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
 }));
 
 function About() {
     const classes = useStyles();
 
     return (
-        <div className="App">
+        <div className={classes.root}>
+            <Box className={classes.hero}>
+                <Box>React Blog</Box>
+            </Box>
             <Container maxWidth="lg" className={classes.blogsContainer}>
-                <Typography variant="h4" className={classes.blogTitle}>
-                    About
-                </Typography>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            React useContext
+                    <Grid item xs={12}>
+                        <Typography className={classes.paper}>  React useContext</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography className={classes.paper}>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography className={classes.paper}>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography className={classes.paper}>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography className={classes.paper}>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
                         </Typography>
                     </Grid>
                 </Grid>
             </Container>
-        </div>
+        </div >
     );
 }
 
 export default About;
+
+{/* <div className={classes.root}>
+<Container maxWidth="lg" className={classes.blogsContainer}>
+    <Typography variant="h4" className={classes.blogTitle}>
+        About
+    </Typography>
+    <Grid container spacing={3}>
+        <Grid item xs={12} sm={6} md={4}>
+            <Typography gutterBottom variant="h5" component="h2">
+                React useContext
+            </Typography>
+            <Grid item xs={6}>
+            <Typography gutterBottom variant="h5" component="h2">
+                React useContext
+            </Typography>
+            </Grid>
+            <Grid item xs={6}>
+            <Typography gutterBottom variant="h5" component="h2">
+                React useContext
+            </Typography>
+            </Grid>
+        </Grid>
+    </Grid>
+</Container>
+</div> */}
