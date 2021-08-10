@@ -33,11 +33,11 @@ const Singlejournal = () => {
                                 had this journal on {journal.createdAt}
                             </span>
                         </h3>
-                        <div className="bg-light py-4">
+                        <div className="bg-light py-4" style={{ wordWrap: 'break-word' }}>
                             <Typography
                                 className="p-4"
                                 style={{
-                                    fontSize: '1.5rem',
+                                    fontSize: '1rem',
                                     fontStyle: 'italic',
                                     border: '2px dotted #1a1a1a',
                                     lineHeight: '1.5',

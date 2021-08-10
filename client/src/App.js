@@ -58,6 +58,9 @@ function App() {
           <Route exact path='/play' component={Play} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
+          <Route exact path="/journals/:journalId">
+              <JournalEntry />
+            </Route>
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
       </Router>

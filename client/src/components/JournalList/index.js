@@ -61,7 +61,7 @@ const JournalList = ({
                     Your Experiences
                 </Typography>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6} md={4}>
+                    {/* <Grid item xs={12} sm={6} md={4}> */}
                         {journals && journals.map((journal) => (
                             <Card className={classes.card}>
                                 <CardActionArea>
@@ -92,11 +92,11 @@ const JournalList = ({
                                                 </>
                                             )}
                                         </Typography>
-                                        <Typography>
+                                        <Typography >
                                             <div className="card-body bg-light p-2">
                                                 <h4>{journal.journalTitle}</h4>
                                             </div>
-                                            <div className={classes.journalText}>
+                                            <div className={classes.journalText} style={{overflow: "hidden", textOverflow: "ellipsis", width: '16rem'}}>
                                                 <p>{journal.journalText}</p>
                                             </div>
                                         </Typography>
@@ -107,16 +107,16 @@ const JournalList = ({
                                         Share
                                     </Button>
                                     <Link
-                                        className="btn btn-primary btn-block btn-squared"
+                                        size="small" color="primary"
                                         to={`/journals/${journal._id}`}
                                     >
-                                        READ MORE
+                                        Read More
                                     </Link>
                                 </CardActions>
                             </Card>
                         ))}
                     </Grid>
-                </Grid>
+                {/* </Grid> */}
             </Container>
         </div>
     );
