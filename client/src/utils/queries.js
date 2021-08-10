@@ -8,6 +8,7 @@ export const QUERY_USER = gql`
       email
       journals {
         _id
+        journalTitle
         journalText
         createdAt
       }
@@ -19,6 +20,7 @@ export const QUERY_JOURNALS = gql`
   query getJournals {
     journals {
       _id
+      journalTitle
       journalText
       journalAuthor
       createdAt
@@ -30,6 +32,7 @@ export const QUERY_SINGLE_JOURNAL = gql`
   query getSingleJournal($journalId: ID!) {
     journal(journalId: $journalId) {
       _id
+      journalTitle
       journalText
       journalAuthor
       createdAt
@@ -51,6 +54,7 @@ export const QUERY_ME = gql`
       email
       journals {
         _id
+        journalTitle
         journalText
         journalAuthor
         createdAt

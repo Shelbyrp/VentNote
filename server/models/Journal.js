@@ -2,6 +2,13 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const journalSchema = new Schema({
+  journalTitle: {
+    type: String,
+    required: 'What is your journal title?',
+    minlength: 1,
+    maxlength: 100,
+    trim: true,
+  },
   journalText: {
     type: String,
     required: 'You need to leave a journal entry!',

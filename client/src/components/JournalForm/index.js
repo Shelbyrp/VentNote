@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 const JournalForm = () => {
   const classes = useStyles();
   const [journalText, setJournalText] = useState('');
-  // const [journalTitle, setJournalTitle] = useState('');
+  const [journalTitle, setJournalTitle] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addJournal, { error }] = useMutation(ADD_JOURNAL, {
@@ -54,13 +54,13 @@ const JournalForm = () => {
     try {
       const { data } = await addJournal({
         variables: {
-          // journalTitle,
+          journalTitle,
           journalText,
           journalAuthor: Auth.getProfile().data.username,
         },
       });
 
-      // setJournalTitle('');
+      setJournalTitle('');
       setJournalText('');
     } catch (err) {
       window.location.href = '/journal';
@@ -75,10 +75,10 @@ const JournalForm = () => {
       setCharacterCount(value.length);
     } 
 
-    // if (name === 'journalTitle' && value.length <= 100) {
-    //   setJournalTitle(value);
-    //   setCharacterCount(value.length);
-    // } 
+    if (name === 'journalTitle' && value.length <= 100) {
+      setJournalTitle(value);
+      setCharacterCount(value.length);
+    } 
   };
 
   return (
@@ -96,15 +96,15 @@ const JournalForm = () => {
           <form
             className={classes.root} onSubmit={handleFormSubmit}
           >
-            {/* <TextareaAutosize
+            <TextareaAutosize
               name="journalTitle"
-              placeholder="Here's a new journal entry"
+              placeholder="Journal Title"
               value={journalTitle}
               // required
               className="form-input w-200"
               style={{ lineHeight: '1.5', resize: 'vertical' }}
               onChange={handleChange}
-            ></TextareaAutosize> */}
+            ></TextareaAutosize>
             <TextareaAutosize
               name="journalText"
               placeholder="Here's a new journal..."

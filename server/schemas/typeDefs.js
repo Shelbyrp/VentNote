@@ -11,6 +11,7 @@ const typeDefs = gql`
 
   type Journal {
     _id: ID
+    journalTitle: String
     journalText: String
     journalAuthor: String
     createdAt: String
@@ -40,7 +41,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addJournal(journalText: String!): Journal
+    addJournal(journalTitle: String!, journalText: String!): Journal
     addComment(journalId: ID!, commentText: String!): Journal
     removeJournal(journalId: ID!): Journal
     removeComment(journalId: ID!, commentId: ID!): Journal
