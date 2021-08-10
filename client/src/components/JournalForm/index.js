@@ -24,6 +24,8 @@ const JournalForm = () => {
   const classes = useStyles();
   const [journalText, setJournalText] = useState('');
   const [journalTitle, setJournalTitle] = useState('');
+  const [journalAddress, setJournalAddress] = useState('');
+  const [journalLocation, setJournalLocation] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addJournal, { error }] = useMutation(ADD_JOURNAL, {
@@ -55,12 +57,16 @@ const JournalForm = () => {
       const { data } = await addJournal({
         variables: {
           journalTitle,
+          journalAddress,
+          journalLocation,
           journalText,
           journalAuthor: Auth.getProfile().data.username,
         },
       });
 
       setJournalTitle('');
+      setJournalAddress('');
+      setJournalLocation('');
       setJournalText('');
     } catch (err) {
       window.location.href = '/journal';
@@ -70,15 +76,19 @@ const JournalForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
+    if (name === 'journalTitle') {
+      setJournalTitle(value);
+    }
+
     if (name === 'journalText' && value.length <= 500) {
       setJournalText(value);
       setCharacterCount(value.length);
-    } 
+    }
 
-    if (name === 'journalTitle' && value.length <= 100) {
-      setJournalTitle(value);
-      setCharacterCount(value.length);
-    } 
+    if (name === 'journalAddress') {
+      setJournalAddress(value);
+    }
+
   };
 
   return (
@@ -100,7 +110,14 @@ const JournalForm = () => {
               name="journalTitle"
               placeholder="Journal Title"
               value={journalTitle}
-              // required
+              className="form-input w-200"
+              style={{ lineHeight: '1.5', resize: 'vertical' }}
+              onChange={handleChange}
+            ></TextareaAutosize>
+            <TextareaAutosize
+              name="journalAddress"
+              placeholder="Journal Address"
+              value={journalAddress}
               className="form-input w-200"
               style={{ lineHeight: '1.5', resize: 'vertical' }}
               onChange={handleChange}

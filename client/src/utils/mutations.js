@@ -25,10 +25,12 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_JOURNAL = gql`
-  mutation addJournal($journalTitle: String!, $journalText: String!) {
-    addJournal(journalTitle: $journalTitle, journalText: $journalText) {
+  mutation addJournal($journalTitle: String!, $journalAddress: String!, $journalLocation: String!, $journalText: String!) {
+    addJournal(journalTitle: $journalTitle, journalAddress: $journalAddress, journalLocation: $journalLocation, journalText: $journalText) {
       _id
       journalTitle
+      journalAddress
+      journalLocation
       journalText
       journalAuthor
       createdAt
@@ -45,6 +47,7 @@ export const ADD_COMMENT = gql`
     addComment(journalId: $journalId, commentText: $commentText) {
       _id
       journalTitle
+      journalAddress
       journalText
       journalAuthor
       createdAt

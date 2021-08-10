@@ -9,6 +9,8 @@ export const QUERY_USER = gql`
       journals {
         _id
         journalTitle
+        journalAddress
+        journalLocation
         journalText
         createdAt
       }
@@ -21,6 +23,8 @@ export const QUERY_JOURNALS = gql`
     journals {
       _id
       journalTitle
+      journalAddress
+      journalLocation
       journalText
       journalAuthor
       createdAt
@@ -33,6 +37,8 @@ export const QUERY_SINGLE_JOURNAL = gql`
     journal(journalId: $journalId) {
       _id
       journalTitle
+      journalAddress
+      journalLocation
       journalText
       journalAuthor
       createdAt
@@ -55,6 +61,8 @@ export const QUERY_ME = gql`
       journals {
         _id
         journalTitle
+        journalAddress
+        journalLocation
         journalText
         journalAuthor
         createdAt
@@ -62,3 +70,11 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_MARKERS = gql`
+query getMarkers {
+  journals {
+      journalLocation
+  }
+}
+`

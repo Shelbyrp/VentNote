@@ -95,6 +95,7 @@ const JournalList = ({
                                         <Typography >
                                             <div className="card-body bg-light p-2">
                                                 <h4>{journal.journalTitle}</h4>
+                                                <h5>{journal.journalAddress}</h5>
                                             </div>
                                             <div className={classes.journalText} style={{overflow: "hidden", textOverflow: "ellipsis", width: '16rem'}}>
                                                 <p>{journal.journalText}</p>

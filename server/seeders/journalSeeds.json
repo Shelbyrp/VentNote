@@ -1,11 +1,15 @@
 [
     {
       "journalTitle": "Queenstown, New Zealand",
+      "journalAddress": "Queenstown, New Zealand",
+      "journalLocation": "-45.031162, 168.662643",
       "journalText": "Queenstown rocks",
       "journalAuthor": "Sally Lee"
     },
     {
       "journalTitle": "Melbourne, Victoria",
+      "journalAddress": "Melbourne, Victoria",
+      "journalLocation": "-37.840935, 144.946457",
         "journalText": "Cafe Sage in Melbourne is amazing",
         "journalAuthor": "Emma Alex"
     }
