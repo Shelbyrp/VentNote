@@ -48,12 +48,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addJournal: async (parent, { journalTitle, journalAddress, journalLocation, journalText}, context) => {
+    addJournal: async (parent, { journalTitle, journalAddress, journalText}, context) => {
       if (context.user) {
         const journal = await Journal.create({
           journalTitle,
           journalAddress,
-          journalLocation,
           journalText,
           journalAuthor: context.user.username,
         });

@@ -25,7 +25,8 @@ const JournalForm = () => {
   const [journalText, setJournalText] = useState('');
   const [journalTitle, setJournalTitle] = useState('');
   const [journalAddress, setJournalAddress] = useState('');
-  const [journalLocation, setJournalLocation] = useState('');
+  const [journalLat, setJournalLat] = useState('');
+  const [journalLng, setJournalLng] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addJournal, { error }] = useMutation(ADD_JOURNAL, {
@@ -58,7 +59,8 @@ const JournalForm = () => {
         variables: {
           journalTitle,
           journalAddress,
-          journalLocation,
+          journalLat,
+          journalLng,
           journalText,
           journalAuthor: Auth.getProfile().data.username,
         },
@@ -66,7 +68,8 @@ const JournalForm = () => {
 
       setJournalTitle('');
       setJournalAddress('');
-      setJournalLocation('');
+      setJournalLat('');
+      setJournalLng('');
       setJournalText('');
     } catch (err) {
       window.location.href = '/journal';

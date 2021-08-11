@@ -104,9 +104,6 @@ const JournalList = ({
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small" color="primary">
-                                    Share
-                                </Button>
                                 <Link
                                     size="small" color="primary"
                                     to={`/journals/${journal._id}`}

@@ -14,17 +14,6 @@ const journalSchema = new Schema({
     type: String,
     required: [true, 'Please add an address']
   },
-  journalLocation: [
-    {
-      lat: {
-        type: String
-      },
-
-      lng: {
-        type: String
-      }
-    }
-  ],
   // {
   // type: {
   // type: String,

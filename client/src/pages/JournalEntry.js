@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#fff"
     },
     hero: {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1504317083653-6843c8aa144f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80')`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1440778303588-435521a205bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')`,
         height: "400px",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -84,7 +84,7 @@ const Singlejournal = () => {
         <div className="my-3">
             <Container>
             <Box className={classes.hero}>
-                <Box>About VentNote</Box>
+                <Box>{journal.journalTitle}</Box>
             </Box>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
