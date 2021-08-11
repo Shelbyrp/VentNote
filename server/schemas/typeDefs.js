@@ -13,11 +13,16 @@ const typeDefs = gql`
     _id: ID
     journalTitle: String
     journalAddress: String
-    journalLocation: String
+    journalLocation: [JournalLocation]
     journalText: String
     journalAuthor: String
     createdAt: String
     comments: [Comment]!
+  }
+
+  type JournalLocation {
+    lat: Float
+    lng: Float
   }
 
   type Comment {

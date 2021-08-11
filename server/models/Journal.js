@@ -14,18 +14,29 @@ const journalSchema = new Schema({
     type: String,
     required: [true, 'Please add an address']
   },
-  journalLocation: {
-    // type: {
-      type: String,
-      // enum: ['Point']
-    // },
-    // coordinates: {
-    //   type: [Number],
-    //   index: '2dsphere'
-    // },
-    // formattedAddress: String,
-    // city: String
-  },
+  journalLocation: [
+    {
+      lat: {
+        type: String
+      },
+
+      lng: {
+        type: String
+      }
+    }
+  ],
+  // {
+  // type: {
+  // type: String,
+  // enum: ['Point']
+  // },
+  // coordinates: {
+  //   type: [Number],
+  //   index: '2dsphere'
+  // },
+  // formattedAddress: String,
+  // city: String
+  // },
   journalText: {
     type: String,
     required: 'You need to leave a journal entry!',

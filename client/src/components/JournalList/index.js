@@ -62,61 +62,61 @@ const JournalList = ({
                 </Typography>
                 <Grid container spacing={3}>
                     {/* <Grid item xs={12} sm={6} md={4}> */}
-                        {journals && journals.map((journal) => (
-                            <Card className={classes.card}>
-                                <CardActionArea>
-                                    {/* <CardMedia
-                                        className={classes.media}
-                                        image="/static/images/cards/contemplative-reptile.jpg"
-                                        title="Contemplative Reptile"
-                                    /> */}
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                        </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            {showUsername ? (
-                                                <Link
-                                                    className="text-light"
-                                                    to={`/profiles/${journal.journalAuthor}`}
-                                                >
-                                                    {journal.journalAuthor} <br />
-                                                    <span style={{ fontSize: '1rem' }}>
-                                                        {journal.createdAt}
-                                                    </span>
-                                                </Link>
-                                            ) : (
-                                                <>
-                                                    <span style={{ fontSize: '1rem' }}>
-                                                        You had this journal on {journal.createdAt}
-                                                    </span>
-                                                </>
-                                            )}
-                                        </Typography>
-                                        <Typography >
-                                            <div className="card-body bg-light p-2">
-                                                <h4>{journal.journalTitle}</h4>
-                                                <h5>{journal.journalAddress}</h5>
-                                            </div>
-                                            <div className={classes.journalText} style={{overflow: "hidden", textOverflow: "ellipsis", width: '16rem'}}>
-                                                <p>{journal.journalText}</p>
-                                            </div>
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <Button size="small" color="primary">
-                                        Share
-                                    </Button>
-                                    <Link
-                                        size="small" color="primary"
-                                        to={`/journals/${journal._id}`}
-                                    >
-                                        Read More
-                                    </Link>
-                                </CardActions>
-                            </Card>
-                        ))}
-                    </Grid>
+                    {journals && journals.map((journal) => (
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardMedia
+                                    className={classes.media}
+                                    image="https://images.unsplash.com/photo-1440778303588-435521a205bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                                    title="Contemplative Reptile"
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {showUsername ? (
+                                            <Link
+                                                className="text-light"
+                                                to={`/profiles/${journal.journalAuthor}`}
+                                            >
+                                                {journal.journalAuthor} <br />
+                                                <span style={{ fontSize: '1rem' }}>
+                                                    {journal.createdAt}
+                                                </span>
+                                            </Link>
+                                        ) : (
+                                            <>
+                                                <span style={{ fontSize: '1rem' }}>
+                                                    You had this journal on {journal.createdAt}
+                                                </span>
+                                            </>
+                                        )}
+                                    </Typography>
+                                    <Typography >
+                                        <div className="card-body bg-light p-2">
+                                            <h4>{journal.journalTitle}</h4>
+                                            <h5>{journal.journalAddress}</h5>
+                                        </div>
+                                        <div className={classes.journalText} style={{ overflow: "hidden", textOverflow: "ellipsis", width: '16rem' }}>
+                                            <p>{journal.journalText}</p>
+                                        </div>
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                                <Button size="small" color="primary">
+                                    Share
+                                </Button>
+                                <Link
+                                    size="small" color="primary"
+                                    to={`/journals/${journal._id}`}
+                                >
+                                    Read More
+                                </Link>
+                            </CardActions>
+                        </Card>
+                    ))}
+                </Grid>
                 {/* </Grid> */}
             </Container>
         </div>

@@ -10,7 +10,10 @@ export const QUERY_USER = gql`
         _id
         journalTitle
         journalAddress
-        journalLocation
+        journalLocation{
+          lat
+          lng
+        }
         journalText
         createdAt
       }
@@ -24,7 +27,10 @@ export const QUERY_JOURNALS = gql`
       _id
       journalTitle
       journalAddress
-      journalLocation
+      journalLocation{
+        lat
+        lng
+      }
       journalText
       journalAuthor
       createdAt
@@ -38,7 +44,10 @@ export const QUERY_SINGLE_JOURNAL = gql`
       _id
       journalTitle
       journalAddress
-      journalLocation
+      journalLocation{
+        lat
+        lng
+      }
       journalText
       journalAuthor
       createdAt
@@ -62,7 +71,10 @@ export const QUERY_ME = gql`
         _id
         journalTitle
         journalAddress
-        journalLocation
+        journalLocation{
+          lat
+          lng
+        }
         journalText
         journalAuthor
         createdAt
@@ -74,7 +86,12 @@ export const QUERY_ME = gql`
 export const QUERY_MARKERS = gql`
 query getMarkers {
   journals {
-      journalLocation
+    _id
+    journalAddress
+    journalLocation{
+      lat
+      lng
+    }
   }
 }
 `
