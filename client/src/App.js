@@ -55,7 +55,7 @@ function App() {
           <Route exact path='/addjournal' component={AddJournal} />
           <Route exact path='/journalentry' component={JournalEntry} />
           <Route exact path='/map' component={Map} />
-          <Route exact path='/play' component={Play} />
+          {/* <Route exact path='/play' component={Play} /> */}
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path="/journals/:journalId">

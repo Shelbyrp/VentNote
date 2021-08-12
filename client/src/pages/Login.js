@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Footer from '../components/Footer';
 import Auth from '../utils/auth';
 
 const useStyles = makeStyles(theme => ({

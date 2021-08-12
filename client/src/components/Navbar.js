@@ -70,9 +70,9 @@ const NavBar = () => {
                                     <Link variant='h6' className={classes.title} to="/map">
                                         Map
                                     </Link>
-                                    <Link variant='h6' className={classes.title} to="/play">
+                                    {/* <Link variant='h6' className={classes.title} to="/play">
                                         Play
-                                    </Link>
+                                    </Link> */}
                                     <button color="primary" onClick={logout}>
                                         Logout
                                     </button>

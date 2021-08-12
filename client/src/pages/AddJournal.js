@@ -2,6 +2,7 @@ import React from 'react';
 import JournalForm from '../components/JournalForm';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from "@material-ui/core";
+import Footer from '../components/Footer';
 
 const useStyles = makeStyles({
     gridContainer: {
@@ -27,6 +28,7 @@ const AddJournal = () => {
                     <JournalForm />
                 </Grid>
             </Grid>
+            <Footer title="VentNote"/>
             </div>
         </main>
     );

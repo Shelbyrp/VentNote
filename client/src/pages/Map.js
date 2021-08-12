@@ -4,7 +4,7 @@ import { QUERY_MARKERS } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import Geocode from "react-geocode";
-
+import Footer from '../components/Footer';
 
 const containerStyle = {
     width: '100%',

@@ -55,7 +55,7 @@ const JournalList = ({
     const classes = useStyles();
 
     return (
-        <div className="App">
+        <div>
             <Container maxWidth="lg" className={classes.blogsContainer}>
                 <Typography variant="h4" className={classes.blogTitle}>
                     Your Experiences
@@ -71,13 +71,11 @@ const JournalList = ({
                                     title="Contemplative Reptile"
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                    </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
                                         {showUsername ? (
                                             <Link
-                                                className="text-light"
                                                 to={`/profiles/${journal.journalAuthor}`}
+                                                style={{ color: '#000', textDecoration: 'none' }}
                                             >
                                                 {journal.journalAuthor} <br />
                                                 <span style={{ fontSize: '1rem' }}>
@@ -93,9 +91,9 @@ const JournalList = ({
                                         )}
                                     </Typography>
                                     <Typography >
-                                        <div className="card-body bg-light p-2">
+                                        <div>
                                             <h4>{journal.journalTitle}</h4>
-                                            <h5>{journal.journalAddress}</h5>
+                                            <h5>Location: {journal.journalAddress}</h5>
                                         </div>
                                         <div className={classes.journalText} style={{ overflow: "hidden", textOverflow: "ellipsis", width: '16rem' }}>
                                             <p>{journal.journalText}</p>
@@ -103,10 +101,11 @@ const JournalList = ({
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions>
+                            <CardActions    style={{ background: '#000' }}>
                                 <Link
-                                    size="small" color="primary"
+                                    size="small" 
                                     to={`/journals/${journal._id}`}
+                                    style={{ color: '#fff', textDecoration: 'none' }}
                                 >
                                     Read More
                                 </Link>

@@ -3,7 +3,7 @@ import React from 'react';
 // Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
+import Footer from '../components/Footer';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
