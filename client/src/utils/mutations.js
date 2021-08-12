@@ -30,7 +30,7 @@ export const ADD_JOURNAL = gql`
       _id
       journalTitle
       journalAddress
-      journalText
+            journalText
       journalAuthor
       createdAt
     }

@@ -29,23 +29,23 @@ function Map() {
     });
 
 
-    Geocode.setApiKey("AIzaSyCLD89y6zAJjP2lxnmtni5-ck-311J_Rk4");
-    Geocode.setLanguage("en");
-    Geocode.setRegion("es");
-    Geocode.setLocationType("ROOFTOP");
-    Geocode.enableDebug();
+    // Geocode.setApiKey("AIzaSyCLD89y6zAJjP2lxnmtni5-ck-311J_Rk4");
+    // Geocode.setLanguage("en");
+    // Geocode.setRegion("es");
+    // Geocode.setLocationType("ROOFTOP");
+    // Geocode.enableDebug();
 
-    Geocode.fromAddress("Perth").then(
-        (response) => {
-            const { lat, lng } = response.results[0].geometry.location;
-            console.log(lat, lng);
-        },
-        (error) => {
-            console.error(error);
-        }
-    )
+    // Geocode.fromAddress("Perth").then(
+    //     (response) => {
+    //         const { lat, lng } = response.results[0].geometry.location;
+    //         console.log(lat, lng);
+    //     },
+    //     (error) => {
+    //         console.error(error);
+    //     }
+    // )
 
-    console.log("postionlocation", data);
+    // console.log("postionlocation", data);
 
     const journal = data?.journal || {};
 

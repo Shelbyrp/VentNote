@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
@@ -18,11 +18,11 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     padding: theme.spacing(2),
     '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '500px',
+      margin: theme.spacing(1),
+      width: '500px',
     },
     '& .MuiButtonBase-root': {
-        margin: theme.spacing(2),
+      margin: theme.spacing(2),
     }
   },
   text: {
@@ -33,7 +33,7 @@ const JournalForm = () => {
   const classes = useStyles();
   const [journalText, setJournalText] = useState('');
   const [journalTitle, setJournalTitle] = useState('');
-  const [journalAddress, setJournalAddress] = useState('');
+  const [journalAddress, setQuery] = useState('');
   const [journalLat, setJournalLat] = useState('');
   const [journalLng, setJournalLng] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
@@ -76,7 +76,7 @@ const JournalForm = () => {
       });
 
       setJournalTitle('');
-      setJournalAddress('');
+      setQuery('');
       setJournalLat('');
       setJournalLng('');
       setJournalText('');
@@ -97,11 +97,63 @@ const JournalForm = () => {
       setCharacterCount(value.length);
     }
 
-    if (name === 'journalAddress') {
-      setJournalAddress(value);
-    }
+    // if (name === 'journalAddress') {
+    //   setJournalAddress(query);
+    // }
 
   };
+
+  let autoComplete;
+
+  const loadScript = (url, callback) => {
+    let script = document.createElement("script");
+    script.type = "text/javascript";
+
+    if (script.readyState) {
+      script.onreadystatechange = function () {
+        if (script.readyState === "loaded" || script.readyState === "complete") {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else {
+      script.onload = () => callback();
+    }
+
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  };
+
+  function handleScriptLoad(updateQuery, autoCompleteRef) {
+    autoComplete = new window.google.maps.places.Autocomplete(
+      autoCompleteRef.current,
+      { types: ["(cities)"] }
+    );
+    autoComplete.setFields(["address_components", "formatted_address"]);
+    autoComplete.addListener("place_changed", () =>
+      handlePlaceSelect(updateQuery)
+    );
+  }
+
+  async function handlePlaceSelect(updateQuery) {
+    const addressObject = autoComplete.getPlace();
+    const query = addressObject.formatted_address;
+    updateQuery(query);
+    console.log(addressObject);
+    console.log("query" + query)
+  }
+
+
+ // const [query, setQuery] = useState("");
+  const autoCompleteRef = useRef(null);
+
+  useEffect(() => {
+    loadScript(
+      `https://maps.googleapis.com/maps/api/js?key=AIzaSyCLD89y6zAJjP2lxnmtni5-ck-311J_Rk4&libraries=places`,
+      () => handleScriptLoad(setQuery, autoCompleteRef)
+    );
+  }, []);
+
 
   return (
     <div>
@@ -126,13 +178,22 @@ const JournalForm = () => {
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></TextField>
-              <TextField
-                name="journalAddress"
+              {/* <TextField
+                // name="journalAddress"
                 placeholder="Journal Address"
                 value={journalAddress}
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
-              ></TextField>
+              ></TextField> */}
+              <div className="search-location-input">
+                <input
+                  name="journalAddress"
+                  ref={autoCompleteRef}
+                  onChange={event => setQuery(event.target.value)}
+                  placeholder="Enter a City"
+                  value={journalAddress}
+                />
+              </div>
               <TextareaAutosize
                 name="journalText"
                 placeholder="Here's a new journal..."
@@ -165,6 +226,8 @@ const JournalForm = () => {
     </div>
   );
 };
+
+
 
 export default JournalForm;
 
