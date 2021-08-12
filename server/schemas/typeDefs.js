@@ -13,10 +13,21 @@ const typeDefs = gql`
     _id: ID
     journalTitle: String
     journalAddress: String
+    journalLatLng: LatLng
     journalText: String
     journalAuthor: String
     createdAt: String
   }
+
+ type LatLng {
+   lat: Float!
+   lng: Float!
+ }
+
+ input InputLatLng {
+  lat: Float!
+  lng: Float!
+}
 
   type Auth {
     token: ID!
@@ -34,7 +45,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addJournal(journalTitle: String!, journalAddress: String!, journalText: String!): Journal
+    addJournal(journalTitle: String!, journalAddress: String!, journalLatLng: InputLatLng, journalText: String!): Journal
     removeJournal(journalId: ID!): Journal
   }
 `;

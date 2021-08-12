@@ -35,7 +35,7 @@ function Map() {
     Geocode.setLocationType("ROOFTOP");
     Geocode.enableDebug();
 
-    Geocode.fromAddress(data).then(
+    Geocode.fromAddress("Perth").then(
         (response) => {
             const { lat, lng } = response.results[0].geometry.location;
             console.log(lat, lng);
@@ -129,3 +129,33 @@ function Map() {
 
 export default Map
 
+
+{/* <GoogleMap
+mapContainerStyle={containerStyle}
+center={center}
+zoom={3}
+onLoad={onLoad}
+onClick={() => setActiveMarker(null)}
+onUnmount={onUnmount}
+mapIds={mapIds}
+options={{ mapId: "eb3894643d1781b" }}
+>
+{data?.journals.map( async ({ _id: key, journalAddress }) =>{ 
+    // response.results[0].geometry.location;
+    const geoCode = await Geocode.fromAddress("Perth") || {};
+    console.log("Geocode", geoCode)
+    const {results: [{geometry: {location: {lat, lng} = {}} = {}} = {}] = []} = geoCode;
+    return (
+    <Marker
+        key={key}
+        position={{lat, lng}}
+        onClick={() => handleActiveMarker(key)}
+    >
+        {activeMarker === key ? (
+            <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                <div>{journalAddress}</div>
+            </InfoWindow>
+        ) : null}
+    </Marker>
+)})}
+</GoogleMap> */}

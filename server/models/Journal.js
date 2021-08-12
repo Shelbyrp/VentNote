@@ -14,6 +14,10 @@ const journalSchema = new Schema({
     type: String,
     required: [true, 'Please add an address']
   },
+  journalLatLng: new Schema({
+    lat: Number,
+    lng: Number
+  }),
   // {
   // type: {
   // type: String,

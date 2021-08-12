@@ -106,7 +106,7 @@ const JournalForm = () => {
   return (
     <div>
       <Container maxWidth="lg" className={classes.blogsContainer}>
-        <h3>What latest experience do you want to record?</h3>
+        <h2>What latest experience do you want to record?</h2>
 
         {Auth.loggedIn() ? (
           <>

@@ -68,7 +68,7 @@ const JournalList = ({
                                 <CardMedia
                                     className={classes.media}
                                     image="https://images.unsplash.com/photo-1440778303588-435521a205bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                                    title="Contemplative Reptile"
+                                    title="Holiday"
                                 />
                                 <CardContent>
                                     <Typography variant="body2" color="textSecondary" component="p">
@@ -92,8 +92,8 @@ const JournalList = ({
                                     </Typography>
                                     <Typography >
                                         <div>
-                                            <h4>{journal.journalTitle}</h4>
-                                            <h5>Location: {journal.journalAddress}</h5>
+                                        <h4>Location: {journal.journalAddress}</h4>
+                                         <h4>{journal.journalTitle}</h4>
                                         </div>
                                         <div className={classes.journalText} style={{ overflow: "hidden", textOverflow: "ellipsis", width: '16rem' }}>
                                             <p>{journal.journalText}</p>

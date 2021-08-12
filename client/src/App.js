@@ -12,7 +12,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Journal from './pages/Journal';
 import Map from './pages/Map';
-import Play from './pages/Play';
+// import Play from './pages/Play';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Navbar from './components/Navbar';

@@ -12,14 +12,18 @@ const resolvers = {
     },
     journals: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Journal.find(params).sort({ createdAt: -1 });
+      const journals = await Journal.find(params).sort({ createdAt: -1 });
+      console.log("journals", journals)
+      return journals;
     },
     journal: async (parent, { journalId }) => {
-      return Journal.findOne({ _id: journalId });
+      const journal = await Journal.findOne({ _id: journalId });
+      console.log("journal", journal)
+      return journal;
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('journals');
+        return await User.findOne({ _id: context.user._id }).populate('journals');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -48,11 +52,12 @@ const resolvers = {
 
       return { token, user };
     },
-    addJournal: async (parent, { journalTitle, journalAddress, journalText}, context) => {
+    addJournal: async (parent, { journalTitle, journalAddress, journalLatLng, journalText }, context) => {
       if (context.user) {
         const journal = await Journal.create({
           journalTitle,
           journalAddress,
+          journalLatLng,
           journalText,
           journalAuthor: context.user.username,
         });
