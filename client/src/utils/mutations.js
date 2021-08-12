@@ -33,28 +33,6 @@ export const ADD_JOURNAL = gql`
       journalText
       journalAuthor
       createdAt
-      comments {
-        _id
-        commentText
-      }
-    }
-  }
-`;
-
-export const ADD_COMMENT = gql`
-  mutation addComment($journalId: ID!, $commentText: String!) {
-    addComment(journalId: $journalId, commentText: $commentText) {
-      _id
-      journalTitle
-      journalAddress
-      journalText
-      journalAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        createdAt
-      }
     }
   }
 `;
