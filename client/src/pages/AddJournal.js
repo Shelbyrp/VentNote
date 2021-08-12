@@ -15,7 +15,6 @@ const AddJournal = () => {
     const classes = useStyles();
 
     return (
-
         <main>
             <div>
             <Grid
