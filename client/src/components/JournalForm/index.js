@@ -10,6 +10,7 @@ import { TextField } from '@material-ui/core';
 import Auth from '../../utils/auth';
 import Button from '@material-ui/core/Button';
 import Geocode from "react-geocode";
+import { Autocomplete } from '@react-google-maps/api';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -95,10 +96,6 @@ const JournalForm = () => {
       setCharacterCount(value.length);
     }
 
-    // if (name === 'journalAddress') {
-    //   setJournalAddress(query);
-    // }
-
   };
 
   let autoComplete;
@@ -122,40 +119,44 @@ const JournalForm = () => {
     document.getElementsByTagName("head")[0].appendChild(script);
   };
 
-  function handleScriptLoad(updateQuery, autoCompleteRef) {
+  function handleScriptLoad(updateQuery, updateJournalLatLng, autoCompleteRef) {
     autoComplete = new window.google.maps.places.Autocomplete(
       autoCompleteRef.current,
       { types: ["(cities)"] }
     );
     autoComplete.setFields(["address_components", "formatted_address"]);
     autoComplete.addListener("place_changed", () =>
-      handlePlaceSelect(updateQuery)
-    );
+      handlePlaceSelect(updateQuery, updateJournalLatLng)
+    )
   }
 
-  async function handlePlaceSelect(updateQuery, updateLatLng) {
+  async function handlePlaceSelect(updateQuery, updateJournalLatLng) {
+    const addressObject = autoComplete.getPlace();
+    const query = addressObject.formatted_address;
+    updateQuery(query);
+    getCoordinates(updateJournalLatLng, query);
+  }
+
+  async function getCoordinates(updateJournalLatLng, query) {
     Geocode.setApiKey("AIzaSyCLD89y6zAJjP2lxnmtni5-ck-311J_Rk4");
     Geocode.setLanguage("en");
     Geocode.setRegion("es");
     Geocode.setLocationType("ROOFTOP");
     Geocode.enableDebug();
-    const addressObject = autoComplete.getPlace();
-    const query = addressObject.formatted_address;
     const geoCode = await Geocode.fromAddress(query).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
-        updateLatLng({ lat, lng });
-        console.log(lat, lng);
+        document.getElementById("latitude").innerHTML = "Lat: " + lat;
+        document.getElementById("longitude").innerHTML = "Lng: " + lng;
+        console.log("City location: ", lat, lng);
+        return response;
       },
       (error) => {
         console.error(error);
-      }
+      },
     )
-    updateQuery(query);
-    console.log(addressObject);
-    console.log("query " + query + " geocode" + geoCode)
+    console.log("geoCode ", geoCode);
   }
-
 
   // const [query, setQuery] = useState("");
   const autoCompleteRef = useRef(null);
@@ -163,7 +164,7 @@ const JournalForm = () => {
   useEffect(() => {
     loadScript(
       `https://maps.googleapis.com/maps/api/js?key=AIzaSyCLD89y6zAJjP2lxnmtni5-ck-311J_Rk4&libraries=places`,
-      () => handleScriptLoad(setQuery, autoCompleteRef)
+      () => handleScriptLoad(setQuery, setJournalLatLng, autoCompleteRef)
     );
   }, []);
 
@@ -207,6 +208,10 @@ const JournalForm = () => {
                   placeholder="Enter a City"
                   value={journalAddress}
                 />
+              </div>
+              <div>
+                <p id="latitude" name="latitude" value={journalLatLng.lat}>Lat: </p>
+                <p id="longitude" name="longitude" value={journalLatLng.lng}>Lng: </p>
               </div>
               <TextareaAutosize
                 name="journalText"
