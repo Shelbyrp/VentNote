@@ -89,10 +89,10 @@ const Singlejournal = () => {
     }
     return (
         <div className="my-3">
-            <Container className={classes.background}>
             <Box className={classes.hero}>
                 <Box>{journal.journalTitle}</Box>
             </Box>
+            <Container className={classes.background}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <h2>
@@ -108,7 +108,7 @@ const Singlejournal = () => {
                                     fontSize: '1rem',
                                     fontStyle: 'italic',
                                     lineHeight: '1.5',
-                                    border: '2px solid'
+                                    border: '2px solid #6A6C6E'
                                 }}
                             >
                                 {journal.journalText}
@@ -116,9 +116,9 @@ const Singlejournal = () => {
                         </div>
                     </Grid>
                 </Grid>
-          
+
             </Container>
-            <Footer title="VentNote"/>
+            <Footer title="VentNote" />
         </div>
     );
 };

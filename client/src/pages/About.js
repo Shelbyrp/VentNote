@@ -72,13 +72,11 @@ function About() {
             </Box>
             <Container maxWidth="lg" className={classes.blogsContainer}>
                 <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <h2 className={classes.paper}>What is VentNote?</h2>
-                    </Grid>
-                    <Grid item xs={6}>
+                    {/* <Grid item xs={6}>
                     <img src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' width="600" height="372" />
-                    </Grid>
-                    <Grid item xs={6}>
+                    </Grid> */}
+                    <Grid item xs={12}>
+                         <h2 className={classes.paper}>What is VentNote?</h2>
                         <Typography className={classes.paper}>
                         VentNote allows users to capture experiences on the go. <br /><br />Once opened and logged in, VentNote will find your location, whether you’re offline or in service, allow you to enter the details of the adventure, add an image and save it to be reviewed at a later date or shared with others. VentNote, allows adventurers to view their entries in a timeline format or on a map view that shows all the pins of the previous experiences. <br /><br />Wander Out Yonder Inc have also incorporated a game to help pass the hours travelling that might be involved in your next adventure.
                         </Typography>

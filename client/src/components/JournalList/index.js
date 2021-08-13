@@ -91,8 +91,8 @@ const JournalList = ({
                                     </Typography>
                                     <Typography >
                                         <div>
-                                        <h4>Location: {journal.journalAddress}</h4>
-                                         <h4>{journal.journalTitle}</h4>
+                                            <h4 style={{ overflow: "hidden", textOverflow: "ellipsis", width: '16rem' }}>Location: {journal.journalAddress}</h4>
+                                            <h4>{journal.journalTitle}</h4>
                                         </div>
                                         <div className={classes.journalText} style={{ overflow: "hidden", textOverflow: "ellipsis", width: '16rem' }}>
                                             <p>{journal.journalText}</p>
@@ -100,9 +100,9 @@ const JournalList = ({
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions    style={{ background: '#000' }}>
+                            <CardActions style={{ background: '#000' }}>
                                 <Link
-                                    size="small" 
+                                    size="small"
                                     to={`/journals/${journal._id}`}
                                     style={{ color: '#fff', textDecoration: 'none' }}
                                 >
