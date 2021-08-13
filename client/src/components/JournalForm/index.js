@@ -10,7 +10,6 @@ import { TextField } from '@material-ui/core';
 import Auth from '../../utils/auth';
 import Button from '@material-ui/core/Button';
 import Geocode from "react-geocode";
-import { Autocomplete } from '@react-google-maps/api';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,7 +35,7 @@ const JournalForm = () => {
   const [journalText, setJournalText] = useState('');
   const [journalTitle, setJournalTitle] = useState('');
   const [journalAddress, setQuery] = useState('');
-  const [journalLatLng, setJournalLatLng] = useState({lat: 0, lng: 0});
+  const [journalLatLng, setJournalLatLng] = useState({ lat: 0, lng: 0 });
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addJournal, { error }] = useMutation(ADD_JOURNAL, {
@@ -65,7 +64,7 @@ const JournalForm = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addJournal({
+      await addJournal({
         variables: {
           journalTitle,
           journalAddress,
@@ -143,24 +142,20 @@ const JournalForm = () => {
     Geocode.setRegion("es");
     Geocode.setLocationType("ROOFTOP");
     Geocode.enableDebug();
-    const geoCode = await Geocode.fromAddress(query).then(
+    await Geocode.fromAddress(query).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
         document.getElementById("latitude").innerHTML = "Lat: " + lat;
         document.getElementById("longitude").innerHTML = "Lng: " + lng;
-        // setJournalLatLng({lat: lat});
-        // setJournalLatLng({lng: lng});
-        setJournalLatLng({lat: lat, lng: lng});
+        setJournalLatLng({ lat: lat, lng: lng });
         return response;
       },
       (error) => {
         console.error(error);
       },
     )
-    console.log("geoCode ", geoCode);
   }
 
-  // const [query, setQuery] = useState("");
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
@@ -168,7 +163,7 @@ const JournalForm = () => {
       `https://maps.googleapis.com/maps/api/js?key=AIzaSyCLD89y6zAJjP2lxnmtni5-ck-311J_Rk4&libraries=places`,
       () => handleScriptLoad(setQuery, setJournalLatLng, autoCompleteRef)
     );
-  }, []);
+  });
 
 
   return (
@@ -194,13 +189,6 @@ const JournalForm = () => {
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></TextField>
-              {/* <TextField
-                // name="journalAddress"
-                placeholder="Journal Address"
-                value={journalAddress}
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></TextField> */}
               <div className="search-location-input">
                 <input
                   name="journalAddress"
@@ -230,11 +218,6 @@ const JournalForm = () => {
                   Add Journal
                 </Button>
               </div>
-              {/* {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
-              </div>
-            )} */}
             </form>
           </>
         ) : (

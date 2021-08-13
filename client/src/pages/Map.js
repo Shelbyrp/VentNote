@@ -3,8 +3,6 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 import { QUERY_MARKERS } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import Geocode from "react-geocode";
-import Footer from '../components/Footer';
 
 const containerStyle = {
     width: '100%',
@@ -12,7 +10,7 @@ const containerStyle = {
 };
 
 const center = {
-    lat: -25.274, lng: 133.775
+    lat: 20, lng: 133.775
 };
 
 const mapIds = {
@@ -28,54 +26,17 @@ function Map() {
         variables: { journalId: journalId, journalAddress: journalAddress, journalLatLng: journalLatLng, journalTitle: journalTitle },
     });
 
-    // Geocode.setApiKey("AIzaSyCLD89y6zAJjP2lxnmtni5-ck-311J_Rk4");
-    // Geocode.setLanguage("en");
-    // Geocode.setRegion("es");
-    // Geocode.setLocationType("ROOFTOP");
-    // Geocode.enableDebug();
-
-    // Geocode.fromAddress("Perth").then(
-    //     (response) => {
-    //         const { lat, lng } = response.results[0].geometry.location;
-    //         console.log(lat, lng);
-    //     },
-    //     (error) => {
-    //         console.error(error);
-    //     }
-    // )
-
-    // console.log("postionlocation", data);
-
     const journal = data?.journal || {};
 
     console.log("journalLatLng " + journalTitle)
 
-    const markers = [
-        // {
-        //     id: 2,
-        //     name: "Denver, Colorado",
-        //     position: { lat: 39.739235, lng: -104.99025 }
-        // },
-        // {
-        //     id: 3,
-        //     name: "Los Angeles, California",
-        //     position: { lat: 34.052235, lng: -118.243683 }
-        // },
-        // {
-        //     id: 4,
-        //     name: "New York, New York",
-        //     position: { lat: 40.712776, lng: -74.005974 }
-        // }
-    ];
-
+   
     const handleActiveMarker = (markers) => {
         if (markers === activeMarker) {
             return;
         }
         setActiveMarker(markers);
     };
-
-    console.log(markers)
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -102,7 +63,7 @@ function Map() {
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={3}
+            zoom={2.8}
             onLoad={onLoad}
             onClick={() => setActiveMarker(null)}
             onUnmount={onUnmount}
@@ -128,34 +89,3 @@ function Map() {
 }
 
 export default Map
-
-
-{/* <GoogleMap
-mapContainerStyle={containerStyle}
-center={center}
-zoom={3}
-onLoad={onLoad}
-onClick={() => setActiveMarker(null)}
-onUnmount={onUnmount}
-mapIds={mapIds}
-options={{ mapId: "eb3894643d1781b" }}
->
-{data?.journals.map( async ({ _id: key, journalAddress }) =>{ 
-    // response.results[0].geometry.location;
-    const geoCode = await Geocode.fromAddress("Perth") || {};
-    console.log("Geocode", geoCode)
-    const {results: [{geometry: {location: {lat, lng} = {}} = {}} = {}] = []} = geoCode;
-    return (
-    <Marker
-        key={key}
-        position={{lat, lng}}
-        onClick={() => handleActiveMarker(key)}
-    >
-        {activeMarker === key ? (
-            <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                <div>{journalAddress}</div>
-            </InfoWindow>
-        ) : null}
-    </Marker>
-)})}
-</GoogleMap> */}
