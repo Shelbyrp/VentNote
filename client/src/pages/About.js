@@ -76,24 +76,30 @@ function About() {
                     <img src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' width="600" height="372" />
                     </Grid> */}
                     <Grid item xs={12}>
-                         <h2 className={classes.paper}>What is VentNote?</h2>
+                        <h2 className={classes.paper}>What is VentNote?</h2>
                         <Typography className={classes.paper}>
-                        VentNote allows users to capture experiences on the go. <br /><br />Once opened and logged in, VentNote will find your location, whether you’re offline or in service, allow you to enter the details of the adventure, add an image and save it to be reviewed at a later date or shared with others. VentNote, allows adventurers to view their entries in a timeline format or on a map view that shows all the pins of the previous experiences. <br /><br />Wander Out Yonder Inc have also incorporated a game to help pass the hours travelling that might be involved in your next adventure.
+                            VentNote allows users to capture experiences on the go. <br /><br />Once opened and logged in, VentNote will find your location, whether you’re offline or in service, allow you to enter the details of the adventure, add an image and save it to be reviewed at a later date or shared with others. VentNote, allows adventurers to view their entries in a timeline format or on a map view that shows all the pins of the previous experiences. <br /><br />Wander Out Yonder Inc have also incorporated a game to help pass the hours travelling that might be involved in your next adventure.
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <h2 className={classes.paper}>
-                          About Wander Out Yonder Inc.
+                            About Wander Out Yonder Inc.
                         </h2>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography className={classes.paper}>
-                        Wander Out Yonder Inc is a Western Australian based agency of developers passionate about encouraging new experiences and promoting a community of like minded people. VentNote is their flagship product which will fit into a larger adventuring framework.
+                            Wander Out Yonder Inc is a Western Australian based agency of developers passionate about encouraging new experiences and promoting a community of like minded people. VentNote is their flagship product which will fit into a larger adventuring framework.
+                        </Typography>
+
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography className={classes.paper}>
+                            If you have any queries or require support, contact hello@wanderoutyonder.com.au.
                         </Typography>
                     </Grid>
                 </Grid>
             </Container>
-            <Footer title="VentNote"/>
+            <Footer title="VentNote" />
         </div >
     );
 }

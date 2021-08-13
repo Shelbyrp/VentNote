@@ -94,17 +94,17 @@ const JournalList = ({
                                             <h4 style={{ overflow: "hidden", textOverflow: "ellipsis", width: '16rem' }}>Location: {journal.journalAddress}</h4>
                                             <h4>{journal.journalTitle}</h4>
                                         </div>
-                                        <div className={classes.journalText} style={{ overflow: "hidden", textOverflow: "ellipsis", width: '16rem' }}>
+                                        <div className={classes.journalText} style={{ overflow: "hidden", textOverflow: "ellipsis", width: '20rem' }}>
                                             <p>{journal.journalText}</p>
                                         </div>
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions style={{ background: '#000' }}>
+                            <CardActions>
                                 <Link
                                     size="small"
                                     to={`/journals/${journal._id}`}
-                                    style={{ color: '#fff', textDecoration: 'none' }}
+                                    style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold'}}
                                 >
                                     Read More
                                 </Link>
