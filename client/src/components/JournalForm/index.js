@@ -9,6 +9,7 @@ import { QUERY_JOURNALS, QUERY_ME } from '../../utils/queries';
 import { TextField } from '@material-ui/core';
 import Auth from '../../utils/auth';
 import Button from '@material-ui/core/Button';
+import Geocode from "react-geocode";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,8 +35,7 @@ const JournalForm = () => {
   const [journalText, setJournalText] = useState('');
   const [journalTitle, setJournalTitle] = useState('');
   const [journalAddress, setQuery] = useState('');
-  const [journalLat, setJournalLat] = useState('');
-  const [journalLng, setJournalLng] = useState('');
+  const [journalLatLng, setJournalLatLng] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addJournal, { error }] = useMutation(ADD_JOURNAL, {
@@ -68,8 +68,7 @@ const JournalForm = () => {
         variables: {
           journalTitle,
           journalAddress,
-          journalLat,
-          journalLng,
+          journalLatLng,
           journalText,
           journalAuthor: Auth.getProfile().data.username,
         },
@@ -77,8 +76,7 @@ const JournalForm = () => {
 
       setJournalTitle('');
       setQuery('');
-      setJournalLat('');
-      setJournalLng('');
+      setJournalLatLng('');
       setJournalText('');
     } catch (err) {
       window.location.href = '/journal';
@@ -135,16 +133,31 @@ const JournalForm = () => {
     );
   }
 
-  async function handlePlaceSelect(updateQuery) {
+  async function handlePlaceSelect(updateQuery, updateLatLng) {
+    Geocode.setApiKey("AIzaSyCLD89y6zAJjP2lxnmtni5-ck-311J_Rk4");
+    Geocode.setLanguage("en");
+    Geocode.setRegion("es");
+    Geocode.setLocationType("ROOFTOP");
+    Geocode.enableDebug();
     const addressObject = autoComplete.getPlace();
     const query = addressObject.formatted_address;
+    const geoCode = await Geocode.fromAddress(query).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        updateLatLng({ lat, lng });
+        console.log(lat, lng);
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
     updateQuery(query);
     console.log(addressObject);
-    console.log("query" + query)
+    console.log("query " + query + " geocode" + geoCode)
   }
 
 
- // const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
@@ -190,6 +203,7 @@ const JournalForm = () => {
                   name="journalAddress"
                   ref={autoCompleteRef}
                   onChange={event => setQuery(event.target.value)}
+                  style={{ lineHeight: '1.5', resize: 'vertical' }}
                   placeholder="Enter a City"
                   value={journalAddress}
                 />

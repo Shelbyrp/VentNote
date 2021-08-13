@@ -81,6 +81,7 @@ export const QUERY_MARKERS = gql`
 query getMarkers {
   journals {
     _id
+    journalTitle
     journalAddress
     journalLatLng{
       lat

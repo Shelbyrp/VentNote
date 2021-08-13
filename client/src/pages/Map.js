@@ -22,12 +22,11 @@ const mapIds = {
 function Map() {
 
     const [activeMarker, setActiveMarker] = useState(null);
-    const { journalId, journalAddress, journalLat, journalLng } = useParams();
+    const { journalId, journalAddress, journalLatLng, journalTitle } = useParams();
     const { loading, data } = useQuery(QUERY_MARKERS, {
         // pass URL parameter
-        variables: { journalId: journalId, journalAddress: journalAddress, journalLat: journalLat, journalLng: journalLng },
+        variables: { journalId: journalId, journalAddress: journalAddress, journalLatLng: journalLatLng, journalTitle: journalTitle },
     });
-
 
     // Geocode.setApiKey("AIzaSyCLD89y6zAJjP2lxnmtni5-ck-311J_Rk4");
     // Geocode.setLanguage("en");
@@ -49,22 +48,24 @@ function Map() {
 
     const journal = data?.journal || {};
 
+    console.log("journalLatLng " + journalTitle)
+
     const markers = [
-        {
-            id: 2,
-            name: "Denver, Colorado",
-            position: { lat: 39.739235, lng: -104.99025 }
-        },
-        {
-            id: 3,
-            name: "Los Angeles, California",
-            position: { lat: 34.052235, lng: -118.243683 }
-        },
-        {
-            id: 4,
-            name: "New York, New York",
-            position: { lat: 40.712776, lng: -74.005974 }
-        }
+        // {
+        //     id: 2,
+        //     name: "Denver, Colorado",
+        //     position: { lat: 39.739235, lng: -104.99025 }
+        // },
+        // {
+        //     id: 3,
+        //     name: "Los Angeles, California",
+        //     position: { lat: 34.052235, lng: -118.243683 }
+        // },
+        // {
+        //     id: 4,
+        //     name: "New York, New York",
+        //     position: { lat: 40.712776, lng: -74.005974 }
+        // }
     ];
 
     const handleActiveMarker = (markers) => {
@@ -84,9 +85,9 @@ function Map() {
     const [map, setMap] = React.useState(null)
 
     const onLoad = React.useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds();
-        markers.forEach(({ position }) => bounds.extend(position));
-        map.fitBounds(bounds);
+        // const bounds = new window.google.maps.LatLngBounds();
+        // markers.forEach(({ position }) => bounds.extend(position));
+        // map.fitBounds(bounds);
     })
 
     const onUnmount = React.useCallback(function callback(map) {
@@ -98,8 +99,6 @@ function Map() {
     }
 
     return isLoaded ? (
-
-
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
@@ -110,15 +109,16 @@ function Map() {
             mapIds={mapIds}
             options={{ mapId: "eb3894643d1781b" }}
         >
-            {markers.map(({ id, name, position }) => (
+            {data.journals.map(({ _id, journalAddress, journalLatLng, journalTitle }) => (
                 <Marker
-                    key={id}
-                    position={position}
-                    onClick={() => handleActiveMarker(id)}
+                    key={_id}
+                    position={journalLatLng}
+                    title={journalAddress}
+                    onClick={() => handleActiveMarker(_id)}
                 >
-                    {activeMarker === id ? (
-                        <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                            <div>{name}</div>
+                    {activeMarker === _id ? (
+                        <InfoWindow onCloseClick={() => setActiveMarker(null)} style={{ width: "100%" }}>
+                            <div>{journalTitle}</div>
                         </InfoWindow>
                     ) : null}
                 </Marker>
