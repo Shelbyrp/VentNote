@@ -25,14 +25,35 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_JOURNAL = gql`
-  mutation addJournal($journalTitle: String!, $journalAddress: String!, $journalText: String!) {
-    addJournal(journalTitle: $journalTitle, journalAddress: $journalAddress,  journalText: $journalText) {
-      _id
-      journalTitle
-      journalAddress
-      journalText
-      journalAuthor
-      createdAt
+mutation addJournal($journalTitle: String!, $journalAddress: String!, $journalText: String!, $journalLatLng: InputLatLng) {
+  addJournal(journalTitle: $journalTitle, journalAddress: $journalAddress, journalText: $journalText, journalLatLng: $journalLatLng) {
+    _id
+    journalTitle
+    journalAddress
+    journalLatLng {
+      lat
+      lng
     }
+    journalText
+    journalAuthor
+    createdAt
   }
+}
 `;
+
+// export const ADD_JOURNAL = gql`
+//   mutation addJournal($journalTitle: String!, $journalAddress: String!, $journalLatLng: InputLatLng!, $journalText: String!) {
+//     addJournal(journalTitle: $journalTitle, journalAddress: $journalAddress, journalLatLng: $InputLatLng, journalText: $journalText) {
+//       _id
+//       journalTitle
+//       journalAddress
+//       journalLatLng{
+//         lat
+//         lng
+//       }
+//       journalText
+//       journalAuthor
+//       createdAt
+//     }
+//   }
+// `;

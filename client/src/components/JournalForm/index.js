@@ -36,7 +36,7 @@ const JournalForm = () => {
   const [journalText, setJournalText] = useState('');
   const [journalTitle, setJournalTitle] = useState('');
   const [journalAddress, setQuery] = useState('');
-  const [journalLatLng, setJournalLatLng] = useState('');
+  const [journalLatLng, setJournalLatLng] = useState({lat: 0, lng: 0});
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addJournal, { error }] = useMutation(ADD_JOURNAL, {
@@ -148,7 +148,9 @@ const JournalForm = () => {
         const { lat, lng } = response.results[0].geometry.location;
         document.getElementById("latitude").innerHTML = "Lat: " + lat;
         document.getElementById("longitude").innerHTML = "Lng: " + lng;
-        console.log("City location: ", lat, lng);
+        // setJournalLatLng({lat: lat});
+        // setJournalLatLng({lng: lng});
+        setJournalLatLng({lat: lat, lng: lng});
         return response;
       },
       (error) => {
