@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
         position: 'absolute',
         top: '30%',
         left: '15%',
-        fontSize: '6rem',
+        fontSize: '10vh',
         color: '#fff'
     }
 }));
@@ -32,7 +32,6 @@ function Home() {
 
     return (
         <div className={classes.root}>
-
             <Container disableGutters maxWidth={false} className={classes.Container}>
                 <div className={classes.hero} />
                 <h1 className={classes.heading}>Adventures Worth Noting</h1>
