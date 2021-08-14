@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
-const geoCoder = require('../utils/geocoder');
 
 const journalSchema = new Schema({
   journalTitle: {
@@ -18,18 +17,6 @@ const journalSchema = new Schema({
     lat: Number,
     lng: Number
   }),
-  // {
-  // type: {
-  // type: String,
-  // enum: ['Point']
-  // },
-  // coordinates: {
-  //   type: [Number],
-  //   index: '2dsphere'
-  // },
-  // formattedAddress: String,
-  // city: String
-  // },
   journalText: {
     type: String,
     required: 'You need to leave a journal entry!',
@@ -48,21 +35,6 @@ const journalSchema = new Schema({
     get: (timestamp) => dateFormat(timestamp),
   }
 });
-
-
-// journalSchema.pre('save', async function(next) {
-//   const loc = await geoCoder.geocode(this.journalAddress);
-//   this.location = {
-//       type: 'Point',
-//       coordinates: [loc[0].longitude, loc[0].latitude],
-//       city: loc[0].city,
-//       formattedAddress: loc[0].formattedAddress
-//   };
-
-//   // Do not save address
-//   this.journalAddress = undefined;
-//   next();
-// });
 
 const Journal = model('Journal', journalSchema);
 

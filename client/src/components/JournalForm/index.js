@@ -15,12 +15,12 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'left',
+    alignItems: 'left',
     padding: theme.spacing(2),
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
-      width: '500px',
+      width: '300px',
     },
     '& .MuiButtonBase-root': {
       margin: theme.spacing(2),
@@ -205,7 +205,7 @@ const JournalForm = () => {
               </div>
               <TextareaAutosize
                 name="journalText"
-                placeholder="Here's a new journal..."
+                placeholder="Write your experience here...."
                 value={journalText}
                 required
                 className="text"
@@ -223,7 +223,7 @@ const JournalForm = () => {
         ) : (
           <p>
             You need to be logged in to share your journals. Please{' '}
-            <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+            <Link to="/login">Login</Link> or <Link to="/signup">Signup.</Link>
           </p>
         )}
       </Container>
