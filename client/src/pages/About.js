@@ -77,9 +77,24 @@ function About() {
                     </Grid> */}
                     <Grid item xs={12}>
                         <h2 className={classes.paper}>What is VentNote?</h2>
-                        <Typography className={classes.paper}>
-                            VentNote allows users to capture experiences on the go. <br /><br />Once opened and logged in, VentNote will find your location, whether you’re offline or in service, allow you to enter the details of the adventure, add an image and save it to be reviewed at a later date or shared with others. VentNote, allows adventurers to view their entries in a timeline format or on a map view that shows all the pins of the previous experiences. <br /><br />Wander Out Yonder Inc have also incorporated a game to help pass the hours travelling that might be involved in your next adventure.
+                        <Typography  component={'span'} className={classes.paper}>
+                            VentNote allows users to capture experiences on the go. <br /><br />Adventures in life come in all different forms. You maybe love to hike every weekend, ski all the best powder in the world, visit all the top-notch wineries or love finding the best hidden treasure cafes.
+                            <br /><br />
+                            What it is, these experiences matter to you so you should have somewhere that you can record these and access them whenever, wherever. VentNote is that special place.
+                            <br /><br />
+                            Stay tuned for new changes coming very, very soon ….
+                            <br />
+                            <div>
+                                <ul>
+                                    <li>Record experiences offline – perfect if you’re exploring off the beaten track</li>
+                                    <li>Filter for your experiences – making tracking experiences even easier</li>
+                                    <li>Upload images – see your experiences with an image gallery within your journal entry</li>
+                                    <li>Share with friends- send your experience directly to a friend</li>
+                                    <li>Play – set a new high record while you travel with one of the games soon to be available</li>
+                                </ul>
+                            </div>
                         </Typography>
+
                     </Grid>
                     <Grid item xs={12}>
                         <h2 className={classes.paper}>
