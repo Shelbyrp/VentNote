@@ -16,7 +16,7 @@ import Map from './pages/Map';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
-// import Header from './components/Header';
+import Header from './components/Header';
 import AddJournal from './pages/AddJournal';
 import JournalEntry from './pages/JournalEntry';
 
@@ -48,7 +48,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Navbar />
+        <Header />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
