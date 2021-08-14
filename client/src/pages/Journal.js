@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
     gridContainer: {
         paddingLeft: "40px",
         paddingRight: "40px",
-        // marginTop: '150px'
     },
     blogsContainer: {
-        paddingTop: theme.spacing(3)
+        paddingTop: theme.spacing(3),
+        marginBottom: '50px'
     },
 }));
 
@@ -26,20 +26,20 @@ const Journal = () => {
 
     return (
         <main>
-               <Container maxWidth="lg" className={classes.blogsContainer}>
-            <Button variant="contained" color="primary" href="/addjournal">
-                Add Journal
-            </Button>
-            {loading ? (
-                <div>Loading...</div>
-            ) : (
-                <JournalList
-                    journals={journals}
-                    title="Some Journals"
-                />
-            )}
+            <Container maxWidth="lg" className={classes.blogsContainer}>
+                <Button variant="contained" color="primary" href="/addjournal">
+                    Add Journal
+                </Button>
+                {loading ? (
+                    <div>Loading...</div>
+                ) : (
+                    <JournalList
+                        journals={journals}
+                        title="Some Journals"
+                    />
+                )}
             </Container>
-            <Footer title="VentNote"/>
+            <Footer title="VentNote" />
         </main>
     );
 };
