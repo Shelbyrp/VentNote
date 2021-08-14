@@ -8,21 +8,16 @@ import {
     Menu,
     MenuItem,
     ListItemIcon,
+    IconButton,
+    Box
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import logo from '../img/logo.png';
-import Auth from '../utils/auth';
 import MenuIcon from "@material-ui/icons/Menu";
-import Home from '../pages/Home';
-import About from '../pages/About';
-import Journal from '../pages/Journal';
-import Map from '../pages/Map';
-// import Play from './pages/Play';
-import Login from '../pages/Login';
-import Signup from '../pages/Signup';
-import AddJournal from '../pages/AddJournal';
-import JournalEntry from '../pages/JournalEntry';
+import Clear from "@material-ui/icons/Clear";
+import {  Link } from "react-router-dom";
+import logo from '../img/logo.png';
+
+import Auth from '../utils/auth';
 
 const drawerWidth = 240;
 
@@ -83,142 +78,158 @@ function HideOnScroll(props) {
 
 const Header = (props) => {
     const classes = useStyles();
-    const [selected, setSelected] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
-       const logout = (event) => {
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
+    const logout = (event) => {
         event.preventDefault();
         Auth.logout();
     };
+
+    const menuId = "responsive-menu-id";
+
     return (
         <div className={classes.root}>
             <HideOnScroll {...props}>
-                <BrowserRouter>
-                    <AppBar className={classes.MuiAppBar}>
-                        <Toolbar>
-                            <Link variant="h5"
-                                component="p"
-                                color="textSecondary"
-                                className={classes.title} to="/">
-                                <img src={logo} alt="logo" className={classes.logo} />
-                            </Link>
-                            {isMobile ? (
-                                <>
-                                    <iconButton
-                                        color="textWhite"
-                                        className={classes.menuButton}
-                                        edge="start"
-                                        aria-label="menu"
-                                        value='checked'
-                                        selected ={selected}
-                                        onClick={handleMenu}
-                                        onChange={() =>{
-                                            setSelected(!selected);
-                                        }}
-                                    >
-                                        <MenuIcon />
-                                    </iconButton>
-                                    <Menu
-                                        id="menu-appbar"
-                                        anchorEl={anchorEl}
-                                        anchorOrigin={{
-                                            vertical: "top",
-                                            horizontal: "right",
-                                        }}
-                                        KeepMounted
-                                        transformOrigin={{
-                                            vertical: "top",
-                                            horizontal: "right",
-                                        }}
-                                        open={open}
-                                        className={classes.menuToggle}
-                                    >
-                                        <MenuItem
+                <AppBar className={classes.MuiAppBar}>
+                    <Toolbar>
+                        <Link variant="h5"
+                            component="p"
+                            color="textSecondary"
+                            className={classes.title} to="/">
+                            <img src={logo} alt="logo" className={classes.logo} />
+                        </Link>
+                        {Auth.loggedIn() ? (
+                            <div>
+                                {isMobile ? (
+                                    <>
+                                        <iconButton
+                                            color="textWhite"
+                                            className={classes.menuButton}
+                                            edge="start"
+                                            aria-label="menu"
+                                            value='checked'
+                                            onClick={handleMenu}
+                                            onClose={handleMenuClose}
                                         >
-                                            <ListItemIcon>
-                                            </ListItemIcon>
-                                            <Link variant='h6' className={classes.titleMobile} to="/">
+                                            <MenuIcon />
+                                        </iconButton>
+                                        <Menu
+                                            id="menu-appbar"
+                                            anchorEl={anchorEl}
+                                            anchorOrigin={{
+                                                vertical: "top",
+                                                horizontal: "right",
+                                            }}
+                                            KeepMounted
+                                            transformOrigin={{
+                                                vertical: "top",
+                                                horizontal: "right",
+                                            }}
+                                            open={open}
+                                            className={classes.menuToggle}
+                                        >
+                                            <IconButton
+                                                edge="end"
+                                                color="#000"
+                                                onClick={handleMenuClose}
+                                                aria-controls={menuId}
+                                                aria-haspopup="true"
+                                            ><Box
+                                            component={Clear}
+                                            width="2rem!important"
+                                            height="2rem!important"
+                                          />
+                                        </IconButton>
+                    
+                                            <MenuItem
+                                            >
+                                                <ListItemIcon>
+                                                </ListItemIcon>
+                                                <Link variant='h6' className={classes.titleMobile} to="/">
+                                                    Home
+                                                </Link>
+                                            </MenuItem>
+                                            <MenuItem
+                                            >
+                                                <ListItemIcon>
+                                                </ListItemIcon>
+                                                <Link variant='h6' className={classes.titleMobile} to="/about">
+                                                    About
+                                                </Link>
+                                            </MenuItem>
+                                            <MenuItem
+                                            >
+                                                <ListItemIcon>
+                                                </ListItemIcon>
+                                                <Link variant='h6' className={classes.titleMobile} to="/journal">
+                                                    Journal
+                                                </Link>
+                                            </MenuItem>
+                                            <MenuItem
+                                            >
+                                                <ListItemIcon>
+                                                </ListItemIcon>
+                                                <Link variant='h6' className={classes.titleMobile} to="/map">
+                                                    Map
+                                                </Link>
+                                            </MenuItem>
+                                            <MenuItem
+                                            >
+                                                <ListItemIcon>
+                                                </ListItemIcon>
+                                                <button color="primary" onClick={logout}>
+                                                    Logout
+                                                </button>
+                                            </MenuItem>
+                                        </Menu>
+                                    </>
+                                ) : (
+                                    <MenuItem>
+                                        <div style={{ marginRight: "2rem" }}>
+                                            <Link variant='h6' className={classes.title} to="/">
                                                 Home
                                             </Link>
-                                        </MenuItem>
-                                        <MenuItem
-                                        >
-                                            <ListItemIcon>
-                                            </ListItemIcon>
-                                            <Link variant='h6' className={classes.titleMobile} to="/about">
+                                            <Link variant='h6' className={classes.title} to="/about">
                                                 About
                                             </Link>
-                                        </MenuItem>
-                                        <MenuItem
-                                        >
-                                            <ListItemIcon>
-                                            </ListItemIcon>
-                                            <Link variant='h6' className={classes.titleMobile} to="/journal">
+                                            <Link variant='h6' className={classes.title} to="/journal">
                                                 Journal
                                             </Link>
-                                        </MenuItem>
-                                        <MenuItem
-                                        >
-                                            <ListItemIcon>
-                                            </ListItemIcon>
-                                            <Link variant='h6' className={classes.titleMobile} to="/map">
+                                            <Link variant='h6' className={classes.title} to="/map">
                                                 Map
                                             </Link>
-                                        </MenuItem>
-                                        <MenuItem
-                                        >
-                                            <ListItemIcon>
-                                            </ListItemIcon>
                                             <button color="primary" onClick={logout}>
                                                 Logout
                                             </button>
-                                        </MenuItem>
-                                    </Menu>
-                                </>
-                            ) : (
+                                        </div>
+                                    </MenuItem>
+                                )}
+                            </div>
+                        ) : (
+                            <>
                                 <MenuItem>
-                                    <div style={{ marginRight: "2rem" }}>
-                                        <Link variant='h6' className={classes.title} to="/">
-                                            Home
-                                        </Link>
-                                        <Link variant='h6' className={classes.title} to="/about">
-                                            About
-                                        </Link>
-                                        <Link variant='h6' className={classes.title} to="/journal">
-                                            Journal
-                                        </Link>
-                                        <Link variant='h6' className={classes.title} to="/map">
-                                            Map
-                                        </Link>
-                                        <button color="primary" onClick={logout}>
-                                            Logout
-                                        </button>
-                                    </div>
+                                    <Link className={classes.title} to="/login">
+                                        Login
+                                    </Link>
+                                    <Link className={classes.title} to="/signup">
+                                        Signup
+                                    </Link>
                                 </MenuItem>
-                            )}
-                        </Toolbar>
-                    </AppBar>
-                    <Switch>
-                        <Route exact path='/' component={Home} />
-                        <Route exact path='/about' component={About} />
-                        <Route exact path='/journal' component={Journal} />
-                        <Route exact path='/addjournal' component={AddJournal} />
-                        <Route exact path='/journalentry' component={JournalEntry} />
-                        <Route exact path='/map' component={Map} />
-                        {/* <Route exact path='/play' component={Play} /> */}
-                        <Route exact path='/login' component={Login} />
-                        <Route exact path='/signup' component={Signup} />
-                        <Route exact path="/journals/:journalId">
-                            <JournalEntry />
-                        </Route>
-                        <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
-                    </Switch>
-                </BrowserRouter>
+                            </>
+                        )}
+                    </Toolbar>
+                </AppBar>
             </HideOnScroll>
         </div>
     );
