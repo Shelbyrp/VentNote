@@ -7,7 +7,6 @@ import {
     Slide,
     Menu,
     MenuItem,
-    ListItemIcon,
     IconButton,
     Box
 } from "@material-ui/core";

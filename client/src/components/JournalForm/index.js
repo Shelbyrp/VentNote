@@ -20,20 +20,25 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
-      width: '100%',
+      width: '90%',
     },
     '& .MuiButtonBase-root': {
       margin: theme.spacing(2),
     }
   },
   input: {
-    width: '100%',
+    width: '90%',
     fontSize: '1rem',
     fontStyle: 'italic'
   },
   blogsContainer: {
+    paddingTop: theme.spacing(3),
     marginBottom: '80px'
+  },
+  hiddenScroll: {
+    overflow: 'hidden'
   }
+
 }));
 
 const JournalForm = () => {
@@ -57,7 +62,6 @@ const JournalForm = () => {
         console.error(e);
       }
 
-      // update me object's cache
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
@@ -173,69 +177,70 @@ const JournalForm = () => {
 
 
   return (
-    <div>
-      <Container maxWidth="lg" className={classes.blogsContainer}>
-        <h2>What latest experience do you want to record?</h2>
-
-        {Auth.loggedIn() ? (
-          <>
-            <p
-              className={`m-0 ${characterCount === 500 || error ? 'text-danger' : ''
-                }`}
-            >
-              Character Count: {characterCount}/500
+    <main >
+      <div>
+        <Container maxWidth="lg" className={classes.blogsContainer}>
+          {Auth.loggedIn() ? (
+            <>
+              <h2>What latest experience do you want to record?</h2>
+              <p
+                className={`m-0 ${characterCount === 500 || error ? 'text-danger' : ''
+                  }`}
+              >
+                Character Count: {characterCount}/500
+              </p>
+              <form
+                className={classes.root} onSubmit={handleFormSubmit}
+              >
+                <TextField
+                  name="journalTitle"
+                  placeholder="Journal Title"
+                  value={journalTitle}
+                  style={{ lineHeight: '1.5', resize: 'vertical' }}
+                  onChange={handleChange}
+                ></TextField>
+                <br />
+                <div className="search-location-input">
+                  <input
+                    name="journalAddress"
+                    ref={autoCompleteRef}
+                    onChange={event => setQuery(event.target.value)}
+                    style={{ lineHeight: '1.5', resize: 'vertical' }}
+                    placeholder="Enter a City"
+                    value={journalAddress}
+                    className={classes.input}
+                  />
+                </div>
+                <div>
+                  <p id="latitude" name="latitude" value={journalLatLng.lat}>Lat: </p>
+                  <p id="longitude" name="longitude" value={journalLatLng.lng}>Lng: </p>
+                </div>
+                <TextareaAutosize
+                  name="journalText"
+                  placeholder="Write your experience here...."
+                  value={journalText}
+                  required
+                  className="text"
+                  style={{ lineHeight: '1.5', width: '90%', height: "200px", resize: 'vertical', marginTop: '10px' }}
+                  onChange={handleChange}
+                ></TextareaAutosize>
+                <div>
+                  <Button variant="contained" color="primary"
+                    style={{ cursor: 'pointer', marginTop: '10px' }} type="submit">
+                    Add Journal
+                  </Button>
+                </div>
+              </form>
+            </>
+          ) : (
+            <p>
+              You need to be logged in to share your journals. Please{' '}
+              <Link to="/login">Login</Link> or <Link to="/signup">Signup.</Link>
             </p>
-            <form
-              className={classes.root} onSubmit={handleFormSubmit}
-            >
-              <TextField
-                name="journalTitle"
-                placeholder="Journal Title"
-                value={journalTitle}
-                style={{ lineHeight: '1.5', resize: 'vertical'}}
-                onChange={handleChange}
-              ></TextField>
-              <br />
-              <div className="search-location-input">
-                <input
-                  name="journalAddress"
-                  ref={autoCompleteRef}
-                  onChange={event => setQuery(event.target.value)}
-                  style={{ lineHeight: '1.5', resize: 'vertical'}}
-                  placeholder="Enter a City"
-                  value={journalAddress}
-                  className={classes.input}
-                />
-              </div>
-              <div>
-                <p id="latitude" name="latitude" value={journalLatLng.lat}>Lat: </p>
-                <p id="longitude" name="longitude" value={journalLatLng.lng}>Lng: </p>
-              </div>
-              <TextareaAutosize
-                name="journalText"
-                placeholder="Write your experience here...."
-                value={journalText}
-                required
-                className="text"
-                style={{ lineHeight: '1.5', width: '100%', height: "200px", resize: 'vertical', marginTop: '10px' }}
-                onChange={handleChange}
-              ></TextareaAutosize>
-              <div>
-                <Button variant="contained" color="primary"
-                  style={{ cursor: 'pointer', marginTop: '10px' }} type="submit">
-                  Add Journal
-                </Button>
-              </div>
-            </form>
-          </>
-        ) : (
-          <p>
-            You need to be logged in to share your journals. Please{' '}
-            <Link to="/login">Login</Link> or <Link to="/signup">Signup.</Link>
-          </p>
-        )}
-      </Container>
-    </div>
+          )}
+        </Container>
+      </div>
+    </main>
   );
 };
 

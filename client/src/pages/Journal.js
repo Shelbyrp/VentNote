@@ -9,10 +9,6 @@ import Container from '@material-ui/core/Container';
 import { QUERY_JOURNALS } from '../utils/queries';
 
 const useStyles = makeStyles((theme) => ({
-    gridContainer: {
-        paddingLeft: "40px",
-        paddingRight: "40px",
-    },
     blogsContainer: {
         paddingTop: theme.spacing(3),
         marginBottom: '50px'
@@ -46,18 +42,3 @@ const Journal = () => {
 
 export default Journal;
 
-
-// {loading ? (
-//     <div>Loading...</div>
-//   ) : (
-//     <JournalList
-//       journals={journals}
-//       title="Some Journals"
-//     />
-//   )}
-
-//   <div>
-//   <Link className="text-light" to="/addjournal">
-//      Add Journal
-//   </Link>
-// </div>

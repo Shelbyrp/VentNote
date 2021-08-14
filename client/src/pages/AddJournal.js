@@ -20,7 +20,6 @@ const AddJournal = () => {
             <div>
             <Grid
                 container
-                spacing={4}
                 className={classes.gridContainer}
                 justify="center"
             >
