@@ -14,7 +14,7 @@ import {
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import Clear from "@material-ui/icons/Clear";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from '../img/logo.png';
 
 import Auth from '../utils/auth';
@@ -146,51 +146,41 @@ const Header = (props) => {
                                                 aria-controls={menuId}
                                                 aria-haspopup="true"
                                             ><Box
-                                            component={Clear}
-                                            width="2rem!important"
-                                            height="2rem!important"
-                                          />
-                                        </IconButton>
-                    
+                                                    component={Clear}
+                                                    width="2rem!important"
+                                                    height="2rem!important"
+                                                />
+                                            </IconButton>
+
                                             <MenuItem
                                             >
-                                                <ListItemIcon>
-                                                </ListItemIcon>
                                                 <Link variant='h6' className={classes.titleMobile} to="/">
                                                     Home
                                                 </Link>
                                             </MenuItem>
                                             <MenuItem
                                             >
-                                                <ListItemIcon>
-                                                </ListItemIcon>
                                                 <Link variant='h6' className={classes.titleMobile} to="/about">
                                                     About
                                                 </Link>
                                             </MenuItem>
                                             <MenuItem
                                             >
-                                                <ListItemIcon>
-                                                </ListItemIcon>
                                                 <Link variant='h6' className={classes.titleMobile} to="/journal">
                                                     Journal
                                                 </Link>
                                             </MenuItem>
                                             <MenuItem
                                             >
-                                                <ListItemIcon>
-                                                </ListItemIcon>
                                                 <Link variant='h6' className={classes.titleMobile} to="/map">
                                                     Map
                                                 </Link>
                                             </MenuItem>
                                             <MenuItem
                                             >
-                                                <ListItemIcon>
-                                                </ListItemIcon>
-                                                <button color="primary" onClick={logout}>
+                                                <Link className={classes.titleMobile} onClick={logout}>
                                                     Logout
-                                                </button>
+                                                </Link>
                                             </MenuItem>
                                         </Menu>
                                     </>
@@ -209,9 +199,9 @@ const Header = (props) => {
                                             <Link variant='h6' className={classes.title} to="/map">
                                                 Map
                                             </Link>
-                                            <button color="primary" onClick={logout}>
+                                            <Link className={classes.title} onClick={logout}>
                                                 Logout
-                                            </button>
+                                            </Link>
                                         </div>
                                     </MenuItem>
                                 )}

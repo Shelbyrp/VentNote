@@ -111,6 +111,7 @@ function About() {
                         <Typography className={classes.paper}>
                             If you have any queries or require support, contact hello@wanderoutyonder.com.au.
                         </Typography>
+                        <br />
                     </Grid>
                 </Grid>
             </Container>

@@ -68,7 +68,8 @@ const useStyles = makeStyles((theme) => ({
     },
     textarea: {
         background: '#fff',
-        padding: '2px'
+        padding: '2px',
+        marginBottom: '100px'
     }
 }));
 
@@ -108,7 +109,7 @@ const Singlejournal = () => {
                                     fontSize: '1rem',
                                     fontStyle: 'italic',
                                     lineHeight: '1.5',
-                                    border: '2px solid #6A6C6E'
+                                    border: '2px solid #6A6C6E',
                                 }}
                             >
                                 {journal.journalText}

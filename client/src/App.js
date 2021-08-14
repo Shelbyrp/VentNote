@@ -15,7 +15,7 @@ import Map from './pages/Map';
 // import Play from './pages/Play';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import Header from './components/Header';
 import AddJournal from './pages/AddJournal';
 import JournalEntry from './pages/JournalEntry';

@@ -22,8 +22,12 @@ const useStyles = makeStyles(theme => ({
         position: 'absolute',
         top: '30%',
         left: '15%',
-        fontSize: '10vh',
-        color: '#fff'
+        fontSize: '6rem',
+        color: '#fff',
+        width: '50%',
+        '@media (max-width: 780px)' : {
+            fontSize: '3rem',
+          }
     }
 }));
 

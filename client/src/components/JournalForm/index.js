@@ -20,13 +20,19 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
-      width: '300px',
+      width: '100%',
     },
     '& .MuiButtonBase-root': {
       margin: theme.spacing(2),
     }
   },
-  text: {
+  input: {
+    width: '100%',
+    fontSize: '1rem',
+    fontStyle: 'italic'
+  },
+  blogsContainer: {
+    marginBottom: '80px'
   }
 }));
 
@@ -186,17 +192,19 @@ const JournalForm = () => {
                 name="journalTitle"
                 placeholder="Journal Title"
                 value={journalTitle}
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                style={{ lineHeight: '1.5', resize: 'vertical'}}
                 onChange={handleChange}
               ></TextField>
+              <br />
               <div className="search-location-input">
                 <input
                   name="journalAddress"
                   ref={autoCompleteRef}
                   onChange={event => setQuery(event.target.value)}
-                  style={{ lineHeight: '1.5', resize: 'vertical' }}
+                  style={{ lineHeight: '1.5', resize: 'vertical'}}
                   placeholder="Enter a City"
                   value={journalAddress}
+                  className={classes.input}
                 />
               </div>
               <div>
@@ -209,7 +217,7 @@ const JournalForm = () => {
                 value={journalText}
                 required
                 className="text"
-                style={{ lineHeight: '1.5', width: '500px', height: "200px", resize: 'vertical', marginTop: '10px' }}
+                style={{ lineHeight: '1.5', width: '100%', height: "200px", resize: 'vertical', marginTop: '10px' }}
                 onChange={handleChange}
               ></TextareaAutosize>
               <div>
