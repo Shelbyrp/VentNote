@@ -72,7 +72,6 @@ const JournalForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
       await addJournal({
         variables: {
@@ -83,7 +82,6 @@ const JournalForm = () => {
           journalAuthor: Auth.getProfile().data.username,
         },
       });
-
       setJournalTitle('');
       setQuery('');
       setJournalLatLng('');
@@ -243,8 +241,6 @@ const JournalForm = () => {
     </main>
   );
 };
-
-
 
 export default JournalForm;
 

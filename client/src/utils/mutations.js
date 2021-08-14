@@ -41,19 +41,19 @@ mutation addJournal($journalTitle: String!, $journalAddress: String!, $journalTe
 }
 `;
 
-// export const ADD_JOURNAL = gql`
-//   mutation addJournal($journalTitle: String!, $journalAddress: String!, $journalLatLng: InputLatLng!, $journalText: String!) {
-//     addJournal(journalTitle: $journalTitle, journalAddress: $journalAddress, journalLatLng: $InputLatLng, journalText: $journalText) {
-//       _id
-//       journalTitle
-//       journalAddress
-//       journalLatLng{
-//         lat
-//         lng
-//       }
-//       journalText
-//       journalAuthor
-//       createdAt
-//     }
-//   }
-// `;
+export const UPDATE_JOURNAL = gql`
+mutation updateJournal($journalId: ID!, $journalText: String!) {
+  updateJournal( journalId: $journalId, journalText: $journalText) {
+    _id
+    journalText
+  }
+}
+`;
+
+export const REMOVE_JOURNAL = gql`
+mutation removeJournal($journalId: ID!) {
+  removeJournal( journalId: $journalId) {
+    _id
+  }
+}
+`;

@@ -9,6 +9,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import { useMutation } from '@apollo/client';
+import { REMOVE_JOURNAL } from '../../utils/mutations';
+import { QUERY_JOURNALS, QUERY_ME } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
+import { QUERY_SINGLE_JOURNAL } from '../../utils/queries';
+import { useParams } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,8 +58,27 @@ const JournalList = ({
 }) => {
 
     const classes = useStyles();
+    const { journalId } = useParams();
+    const { loading, data } = useQuery(QUERY_SINGLE_JOURNAL, {
+        // pass URL parameter
+        variables: { journalId: journalId },
+    });
 
-    return (
+    // const handleOnClick = ({journalId}) => {
+    //     console.log("journalId2", journalId)
+    //     removeJournal({ variables: { journalId } });
+    // }
+
+    const [removeJournal, { error }] = useMutation(REMOVE_JOURNAL);
+
+    const handleOnClick  = (event) => {
+        const { name, value } = event.target;
+    
+        if (name === 'journalDelete') {
+        }
+      };
+
+     return (
         <div>
             <Container maxWidth="lg" className={classes.blogsContainer}>
                 <Typography variant="h4" className={classes.blogTitle}>
@@ -103,11 +128,16 @@ const JournalList = ({
                             <CardActions>
                                 <Link
                                     size="small"
-                                    to={`/journals/${journal._id}`}
-                                    style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold'}}
+                                    to={`/journalentry/${journal._id}`}
+                                    style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold', paddingRight: '8px' }}
                                 >
                                     Read More
                                 </Link>
+                                {/* <Link variant="contained" color="primary" to={`/journalupdate/${journal._id}`} style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold', paddingRight: '8px' }}>
+                                    Update
+                                </Link> */}
+                                {/* <Link variant="contained" color="primary" name="journalDelete" value={journal._id} style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold' }} onClick={handleOnClick}>
+                                    Delete </Link> */}
                             </CardActions>
                         </Card>
                     ))}

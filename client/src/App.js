@@ -19,6 +19,7 @@ import Signup from './pages/Signup';
 import Header from './components/Header';
 import AddJournal from './pages/AddJournal';
 import JournalEntry from './pages/JournalEntry';
+import UpdateJournal from './pages/UpdateJournal';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -59,7 +60,10 @@ function App() {
           {/* <Route exact path='/play' component={Play} /> */}
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
-          <Route exact path="/journals/:journalId">
+          <Route exact path="/journalupdate/:journalId">
+          <UpdateJournal />
+          </Route>
+          <Route exact path="/journalentry/:journalId">
             <JournalEntry />
           </Route>
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />

@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Footer from '../components/Footer';
 import { QUERY_SINGLE_JOURNAL } from '../utils/queries';
-import { Button, Container, Grid, Typography } from '@material-ui/core';
+import { Button, Container, Grid, Typography, TextareaAutosize } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { UPDATE_JOURNAL } from '../utils/mutations';
 import { QUERY_JOURNALS, QUERY_ME } from '../utils/queries';
@@ -80,10 +80,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Singlejournal = () => {
+const UpdateJournal = () => {
     // Use `useParams()` to retrieve value of the route parameter `:profileId`
     const { journalId } = useParams();
-
+    const classes = useStyles();
     const [journalText, setJournalText] = useState('');
 
     const { loading, data } = useQuery(QUERY_SINGLE_JOURNAL, {
@@ -92,7 +92,6 @@ const Singlejournal = () => {
     });
 
     const journal = data?.journal || {};
-    const classes = useStyles();
 
     const [updateJournal, { error }] = useMutation(UPDATE_JOURNAL, {
         update(cache, { data: { updateJournal } }) {
@@ -115,9 +114,24 @@ const Singlejournal = () => {
         },
     });
 
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        try {
+          await updateJournal({
+            variables: {
+              journalId,
+              journalText
+            },
+          });
+          window.location.reload();
+        } catch (err) {
+          console.error(err);
+          window.location.href = '/journal';
+        }
+      };
+
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log("journalText ", value)
         if (name === 'journalText') {
             setJournalText(value);
         }
@@ -135,25 +149,32 @@ const Singlejournal = () => {
             <Container className={classes.background}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
+                        <h1>This is the update page</h1>
                         <h2>
                             {journal.journalAuthor} <br />
                             <span style={{ fontSize: '1rem' }}>
                                 added this journal on {journal.createdAt}
                             </span>
                         </h2>
-                        <div className="bg-light py-4" style={{ wordWrap: 'break-word' }}>
-                            <Typography
-                                className={classes.textarea}
-                                style={{
-                                    fontSize: '1rem',
-                                    fontStyle: 'italic',
-                                    lineHeight: '1.5',
-                                    border: '2px solid #6A6C6E',
-                                }}
-                            >
-                                {journal.journalText}
-                            </Typography>                         
+                        <form
+                className={classes.root} onSubmit={handleFormSubmit}
+              >
+                        <TextareaAutosize
+                            name="journalText"
+                            placeholder={journal.journalText}
+                            value={journalText}
+                            required
+                            className="text"
+                            style={{ lineHeight: '1.5', width: '90%', height: "200px", resize: 'vertical', marginTop: '10px' }}
+                            onChange={handleChange}
+                        ></TextareaAutosize>
+                        <div>
+                            <Button variant="contained" color="primary"
+                                style={{ cursor: 'pointer', marginTop: '10px', marginBottom: '10px' }} type="submit">
+                                Save Journal
+                            </Button>
                         </div>
+                        </form>
                     </Grid>
                 </Grid>
 
@@ -163,4 +184,4 @@ const Singlejournal = () => {
     );
 };
 
-export default Singlejournal;
+export default UpdateJournal;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import { TextField } from '@material-ui/core';
@@ -7,32 +7,40 @@ import { makeStyles } from '@material-ui/core/styles';
 import Auth from '../utils/auth';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: '150px',
-        padding: theme.spacing(6),
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '300px',
-        },
-        '& .MuiButtonBase-root': {
-            margin: theme.spacing(2),
-        },
-        errorMessage: {
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '150px',
+    padding: theme.spacing(6),
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '300px',
+    },
+    '& .MuiButtonBase-root': {
+      margin: theme.spacing(2),
+    },
+    errorMessage: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
     }
+  },
+  success: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#000'
+  }
 }));
 
 
 const Login = (props) => {
-    const classes = useStyles();
+  const classes = useStyles();
+  const history = useHistory();
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -67,48 +75,47 @@ const Login = (props) => {
     });
   };
 
- 
+
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <div className="card-body">
+    <main>
+      <div>
+        <div>
+          <div>
             {data ? (
-              <p>
+              <p className={classes.success}>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-                <form className={classes.root} onSubmit={handleFormSubmit}>
+              <form className={classes.root} onSubmit={handleFormSubmit}>
                 <TextField
-                    label="Email"
-                    variant="filled"
-                    name="email"
-                    type="email"
-                    value={formState.email}
-                    onChange={handleChange} />
+                  label="Email"
+                  variant="filled"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange} />
                 <TextField
-                    placeholder="******"
-                    label="Password"
-                    name="password"
-                    type="password"
-                    value={formState.password}
-                    onChange={handleChange} />
+                  placeholder="******"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange} />
                 <div>
-                <button
-                      className="btn btn-block btn-primary"
-                      style={{ cursor: 'pointer' }}
-                      type="submit"
-                    >
-                      Submit
-                    </button>
+                  <button
+                    style={{ cursor: 'pointer' }}
+                    type="submit"
+                  >
+                    Submit
+                  </button>
                 </div>
-            </form>
+              </form>
             )}
 
             {error && (
-              <div className="my-3 p-3 bg-danger text-white">
+              <div>
                 {error.message}
               </div>
             )}

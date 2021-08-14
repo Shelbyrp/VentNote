@@ -30,6 +30,13 @@ const useStyles = makeStyles(theme => ({
             justifyContent: 'center',
             alignItems: 'center'
         }
+    },
+    success: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#000'
     }
 }));
 
@@ -69,12 +76,12 @@ function Signup() {
 
 
     return (
-        <main className="flex-row justify-center mb-4">
-            <div className="col-12 col-lg-10">
-                <div className="card">
-                    <div className="card-body">
+        <main>
+            <div>
+                <div>
+                    <div>
                         {data ? (
-                            <p>
+                            <p className={classes.success}>
                                 Success! You may now head{' '}
                                 <Link to="/">back to the homepage.</Link>
                             </p>

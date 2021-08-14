@@ -40,10 +40,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NavBar = () => {
+
     const logout = (event) => {
         event.preventDefault();
         Auth.logout();
     };
+
     const classes = useStyles();
     return (
         <header>
@@ -75,6 +77,7 @@ const NavBar = () => {
                                     </Link> */}
                                     <button color="primary" onClick={logout}>
                                         Logout
+
                                     </button>
                                 </MenuItem>
                             </>
@@ -100,42 +103,3 @@ const NavBar = () => {
 
 export default NavBar;
 
-
-// function Navbar() {
-//     const classes = useStyles();
-
-//     return (
-//         <AppBar className={classes.MuiAppBar}>
-//             <Toolbar>
-//                 <img src={logo} alt="logo" className={classes.logo} />
-//                 <MenuItem>
-//                 <Link variant='h6' className={classes.title} to="/">
-//                         Home
-//                     </Link>
-//                 </MenuItem>
-//                 <MenuItem>
-//                     <Link variant='h6' className={classes.title} to="/about">
-//                         About
-//                     </Link>
-//                 </MenuItem>
-//                 <MenuItem>
-//                 <Link variant='h6' className={classes.title} to="/journal">
-//                         Journal
-//                     </Link>
-//                 </MenuItem>
-//                 <MenuItem>
-//                 <Link variant='h6' className={classes.title} to="/map">
-//                         Map
-//                     </Link>
-//                 </MenuItem>
-//                 <MenuItem>
-//                 <Link variant='h6' className={classes.title} to="/play">
-//                         Play
-//                     </Link>
-//                 </MenuItem>
-//             </Toolbar>
-//         </AppBar>
-//     );
-// }
-
-// export default Navbar;

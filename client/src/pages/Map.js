@@ -30,7 +30,7 @@ function Map() {
 
     console.log("journalLatLng " + journalTitle)
 
-   
+
     const handleActiveMarker = (markers) => {
         if (markers === activeMarker) {
             return;

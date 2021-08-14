@@ -46,6 +46,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addJournal(journalTitle: String!, journalAddress: String!, journalLatLng: InputLatLng, journalText: String!): Journal
+    updateJournal(journalId: ID!, journalText: String!): Journal
     removeJournal(journalId: ID!): Journal
   }
 `;
