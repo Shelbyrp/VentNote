@@ -63,7 +63,7 @@ function Map() {
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={2.8}
+            zoom={2.78}
             onLoad={onLoad}
             onClick={() => setActiveMarker(null)}
             onUnmount={onUnmount}

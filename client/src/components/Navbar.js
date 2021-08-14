@@ -46,11 +46,11 @@ const NavBar = () => {
     };
     const classes = useStyles();
     return (
-        <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
+        <header>
             <AppBar className={classes.MuiAppBar}>
                 <Toolbar>
                     <div>
-                        <Link className="text-light" to="/">
+                        <Link to="/">
                             <img src={logo} alt="logo" className={classes.logo} />
                         </Link>
                     </div>

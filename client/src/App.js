@@ -16,6 +16,7 @@ import Map from './pages/Map';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
+// import Header from './components/Header';
 import AddJournal from './pages/AddJournal';
 import JournalEntry from './pages/JournalEntry';
 
@@ -59,8 +60,8 @@ function App() {
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path="/journals/:journalId">
-              <JournalEntry />
-            </Route>
+            <JournalEntry />
+          </Route>
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
       </Router>
@@ -69,5 +70,7 @@ function App() {
 }
 
 export default App;
+
+
 
 
