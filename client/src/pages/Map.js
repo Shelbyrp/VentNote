@@ -28,9 +28,6 @@ function Map() {
 
     const journal = data?.journal || {};
 
-    console.log("journalLatLng " + journalTitle)
-
-
     const handleActiveMarker = (markers) => {
         if (markers === activeMarker) {
             return;

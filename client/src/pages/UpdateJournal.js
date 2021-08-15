@@ -140,11 +140,9 @@ const UpdateJournal = ({
         const { name, value } = event.target;
         if (name === 'journalText') {
             setJournalText(value);
-            console.log("value ", value)
         }
     };
 
-   
     return (
         <div className="my-3">
             <Box className={classes.hero}>

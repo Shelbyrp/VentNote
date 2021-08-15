@@ -13,12 +13,10 @@ const resolvers = {
     journals: async (parent, { username }) => {
       const params = username ? { username } : {};
       const journals = await Journal.find(params).sort({ createdAt: -1 });
-      console.log("journals", journals)
       return journals;
     },
     journal: async (parent, { journalId }) => {
       const journal = await Journal.findOne({ _id: journalId });
-      console.log("journal", journal)
       return journal;
     },
     me: async (parent, args, context) => {
@@ -87,7 +85,6 @@ const resolvers = {
       if (context.user) {
         const journal = await Journal.findOneAndDelete({
           _id: journalId,
-          // journalAuthor: context.user.username,
         });
 
         await User.findOneAndUpdate(
