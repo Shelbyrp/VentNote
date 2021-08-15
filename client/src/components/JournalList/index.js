@@ -11,10 +11,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { useMutation } from '@apollo/client';
 import { REMOVE_JOURNAL } from '../../utils/mutations';
-import { QUERY_JOURNALS, QUERY_ME } from '../../utils/queries';
-import { useQuery } from '@apollo/client';
-import { QUERY_SINGLE_JOURNAL } from '../../utils/queries';
-import { useParams } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,27 +55,28 @@ const JournalList = ({
 }) => {
 
     const classes = useStyles();
-    const { journalId } = useParams();
-    const { loading, data } = useQuery(QUERY_SINGLE_JOURNAL, {
-        // pass URL parameter
-        variables: { journalId: journalId },
-    });
-
-    // const handleOnClick = ({journalId}) => {
-    //     console.log("journalId2", journalId)
-    //     removeJournal({ variables: { journalId } });
-    // }
 
     const [removeJournal, { error }] = useMutation(REMOVE_JOURNAL);
 
-    const handleOnClick  = (event) => {
-        const { name, value } = event.target;
-    
-        if (name === 'journalDelete') {
+    const handleDeleteJournal = async (journalId) => {
+        // get token
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        if (!token) {
+            return false;
         }
-      };
 
-     return (
+        try {
+            const { data } = await removeJournal({
+                variables: { journalId },
+            });
+            window.location.href = '/journal';
+        } catch (err) {
+            console.error(err);
+            window.location.href = '/journal';
+        }
+    };
+
+    return (
         <div>
             <Container maxWidth="lg" className={classes.blogsContainer}>
                 <Typography variant="h4" className={classes.blogTitle}>
@@ -136,8 +134,9 @@ const JournalList = ({
                                 {/* <Link variant="contained" color="primary" to={`/journalupdate/${journal._id}`} style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold', paddingRight: '8px' }}>
                                     Update
                                 </Link> */}
-                                {/* <Link variant="contained" color="primary" name="journalDelete" value={journal._id} style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold' }} onClick={handleOnClick}>
-                                    Delete </Link> */}
+                                <Link variant="contained" color="primary" name="journalDelete" style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold' }} onClick={() => handleDeleteJournal(journal._id)}>
+                                    Delete
+                                </Link>
                             </CardActions>
                         </Card>
                     ))}
