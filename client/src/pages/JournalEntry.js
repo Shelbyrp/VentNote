@@ -133,6 +133,7 @@ const Singlejournal = () => {
                 <Box>{journal.journalTitle}</Box>
             </Box>
             <Container className={classes.background}>
+
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <h2>
@@ -152,7 +153,10 @@ const Singlejournal = () => {
                                 }}
                             >
                                 {journal.journalText}
-                            </Typography>                         
+                            </Typography>
+                            <Button variant="contained" className={classes.button} color="primary" href="/journal">
+                                Go back
+                            </Button>
                         </div>
                     </Grid>
                 </Grid>

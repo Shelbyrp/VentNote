@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useMutation } from '@apollo/client';
-// Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Footer from '../components/Footer';
 import { QUERY_SINGLE_JOURNAL } from '../utils/queries';
-import { Button, Container, Grid, Typography, TextareaAutosize } from '@material-ui/core';
+import { Button, Container, Grid, TextareaAutosize } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { UPDATE_JOURNAL } from '../utils/mutations';
+import Auth from '../utils/auth';
 import { QUERY_JOURNALS, QUERY_ME } from '../utils/queries';
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -81,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UpdateJournal = () => {
-    // Use `useParams()` to retrieve value of the route parameter `:profileId`
+
     const { journalId } = useParams();
     const classes = useStyles();
     const [journalText, setJournalText] = useState('');
@@ -114,26 +113,44 @@ const UpdateJournal = () => {
         },
     });
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        try {
-          await updateJournal({
-            variables: {
-              journalId,
-              journalText
-            },
-          });
-          window.location.reload();
-        } catch (err) {
-          console.error(err);
-          window.location.href = '/journal';
-        }
-      };
+    // const handleFormSubmit = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //       await updateJournal({
+    //         variables: {
+    //           journalId,
+    //           journalText
+    //         },
+    //       });
+    //       window.location.reload();
+    //     } catch (err) {
+    //       console.error(err);
+    //       window.location.href = '/journal';
+    //     }
+    //   };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         if (name === 'journalText') {
             setJournalText(value);
+            console.log("value ", value)
+        }
+    };
+
+    const handleUpdateJournal = async (journalId) => {
+        // get token
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        if (!token) {
+            return false;
+        }
+        try {
+            await updateJournal({
+                variables: { journalId, journalText },
+            });
+            window.location.href = '/journal';
+        } catch (err) {
+            console.error(err);
+            window.location.href = '/journal';
         }
     };
 
@@ -157,23 +174,25 @@ const UpdateJournal = () => {
                             </span>
                         </h2>
                         <form
-                className={classes.root} onSubmit={handleFormSubmit}
-              >
-                        <TextareaAutosize
-                            name="journalText"
-                            placeholder={journal.journalText}
-                            value={journalText}
-                            required
-                            className="text"
-                            style={{ lineHeight: '1.5', width: '90%', height: "200px", resize: 'vertical', marginTop: '10px' }}
-                            onChange={handleChange}
-                        ></TextareaAutosize>
-                        <div>
-                            <Button variant="contained" color="primary"
-                                style={{ cursor: 'pointer', marginTop: '10px', marginBottom: '10px' }} type="submit">
-                                Save Journal
-                            </Button>
-                        </div>
+                            className={classes.root}
+                        >
+                            <TextareaAutosize
+                                name="journalText"
+                                placeholder={journal.journalText}
+                                value={journalText}
+                                required
+                                className="text"
+                                style={{ lineHeight: '1.5', width: '90%', height: "200px", resize: 'vertical', marginTop: '10px' }}
+                                onChange={handleChange}
+                            ></TextareaAutosize>
+                            <div>
+                                <Button variant="contained" color="primary"
+                                    style={{ cursor: 'pointer', marginTop: '10px', marginBottom: '10px' }} type="submit"
+                                    onClick={() => handleUpdateJournal(journal._id)}
+                                >
+                                    Save Journal
+                                </Button>
+                            </div>
                         </form>
                     </Grid>
                 </Grid>
