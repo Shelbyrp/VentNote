@@ -71,15 +71,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    updateJournal: async (parent, { journalId, updateJournal }, context) => {
-      // If not authenticated throw error
-      if (!context.isAuth) {
-        throw new Error('Non Authenticated');
-      }
-      try {
-        const journal = await Journal.findByIdAndUpdate(journalId, updateJournal, {
-          new: true
-        });
+    updateJournal: async (parent, { journalId, journalText }, context) => {
+        try {
+        const journal = await Journal.findByIdAndUpdate(
+          journalId, 
+          { journalText },
+          { new: true }
+        );
         return;
       } catch (error) {
         throw error;

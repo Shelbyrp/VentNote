@@ -84,9 +84,7 @@ const Singlejournal = () => {
     // Use `useParams()` to retrieve value of the route parameter `:profileId`
     const { journalId } = useParams();
 
-    const [journalText, setJournalText] = useState('');
-
-    const { loading, data } = useQuery(QUERY_SINGLE_JOURNAL, {
+      const { loading, data } = useQuery(QUERY_SINGLE_JOURNAL, {
         // pass URL parameter
         variables: { journalId: journalId },
     });

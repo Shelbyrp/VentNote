@@ -173,7 +173,6 @@ const JournalForm = () => {
     );
   });
 
-
   return (
     <main >
       <div>

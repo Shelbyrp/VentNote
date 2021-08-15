@@ -66,7 +66,7 @@ const JournalList = ({
         }
 
         try {
-            const { data } = await removeJournal({
+            await removeJournal({
                 variables: { journalId },
             });
             window.location.href = '/journal';
@@ -131,9 +131,9 @@ const JournalList = ({
                                 >
                                     Read More
                                 </Link>
-                                {/* <Link variant="contained" color="primary" to={`/journalupdate/${journal._id}`} style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold', paddingRight: '8px' }}>
+                                <Link variant="contained" color="primary" to={`/journalupdate/${journal._id}`} style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold', paddingRight: '8px' }}>
                                     Update
-                                </Link> */}
+                                </Link>
                                 <Link variant="contained" color="primary" name="journalDelete" style={{ color: '#000', textDecoration: 'none', fontWeight: 'bold' }} onClick={() => handleDeleteJournal(journal._id)}>
                                     Delete
                                 </Link>

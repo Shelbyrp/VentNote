@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useMutation } from '@apollo/client';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Footer from '../components/Footer';
 import { QUERY_SINGLE_JOURNAL } from '../utils/queries';
@@ -79,18 +79,24 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const UpdateJournal = () => {
+const UpdateJournal = ({
+    journals,
+    title,
+    showTitle = true,
+    showUsername = true,
+}) => {
 
-    const { journalId } = useParams();
     const classes = useStyles();
     const [journalText, setJournalText] = useState('');
 
-    const { loading, data } = useQuery(QUERY_SINGLE_JOURNAL, {
-        // pass URL parameter
-        variables: { journalId: journalId },
-    });
+    const { journalId } = useParams();
 
-    const journal = data?.journal || {};
+    const { loading, data } = useQuery(QUERY_SINGLE_JOURNAL, {
+      // pass URL parameter
+      variables: { journalId: journalId },
+  });
+
+  const journal = data?.journal || {};
 
     const [updateJournal, { error }] = useMutation(UPDATE_JOURNAL, {
         update(cache, { data: { updateJournal } }) {
@@ -113,30 +119,6 @@ const UpdateJournal = () => {
         },
     });
 
-    // const handleFormSubmit = async (event) => {
-    //     event.preventDefault();
-    //     try {
-    //       await updateJournal({
-    //         variables: {
-    //           journalId,
-    //           journalText
-    //         },
-    //       });
-    //       window.location.reload();
-    //     } catch (err) {
-    //       console.error(err);
-    //       window.location.href = '/journal';
-    //     }
-    //   };
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        if (name === 'journalText') {
-            setJournalText(value);
-            console.log("value ", value)
-        }
-    };
-
     const handleUpdateJournal = async (journalId) => {
         // get token
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -154,10 +136,15 @@ const UpdateJournal = () => {
         }
     };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        if (name === 'journalText') {
+            setJournalText(value);
+            console.log("value ", value)
+        }
+    };
 
+   
     return (
         <div className="my-3">
             <Box className={classes.hero}>
