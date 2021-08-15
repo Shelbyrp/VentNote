@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import JournalList from '../components/JournalList';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useMutation } from '@apollo/client';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Footer from '../components/Footer';
 import { QUERY_SINGLE_JOURNAL } from '../utils/queries';
@@ -91,7 +91,7 @@ const UpdateJournal = ({
 
     const { journalId } = useParams();
 
-    const { loading, data } = useQuery(QUERY_SINGLE_JOURNAL, {
+    const { data } = useQuery(QUERY_SINGLE_JOURNAL, {
       // pass URL parameter
       variables: { journalId: journalId },
   });
@@ -178,6 +178,9 @@ const UpdateJournal = ({
                                     Save Journal
                                 </Button>
                             </div>
+                            <Button variant="contained" className={classes.button} color="primary" href="/journal">
+                                Go back
+                            </Button>
                         </form>
                     </Grid>
                 </Grid>

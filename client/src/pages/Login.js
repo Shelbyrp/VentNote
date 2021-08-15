@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import { TextField } from '@material-ui/core';
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 const Login = (props) => {
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
