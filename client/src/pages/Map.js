@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import { QUERY_MARKERS } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const containerStyle = {
     width: '100%',
@@ -79,7 +79,7 @@ function Map() {
                 >
                     {activeMarker === _id ? (
                         <InfoWindow onCloseClick={() => setActiveMarker(null)} style={{ width: "100%" }}>
-                            <div>{journalTitle}</div>
+                            <Link to={`/journalentry/${_id}`}>{journalTitle}</Link>
                         </InfoWindow>
                     ) : null}
                 </Marker>

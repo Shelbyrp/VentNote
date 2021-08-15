@@ -115,14 +115,6 @@ const Singlejournal = () => {
         },
     });
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        console.log("journalText ", value)
-        if (name === 'journalText') {
-            setJournalText(value);
-        }
-    };
-
     if (loading) {
         return <div>Loading...</div>;
     }

@@ -35,7 +35,7 @@ const Journal = () => {
                     />
                 )}
             </Container>
-            <Footer title="VentNote" />
+            {/* <Footer title="VentNote" /> */}
         </main>
     );
 };
