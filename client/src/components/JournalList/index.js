@@ -93,7 +93,7 @@ const JournalList = ({
                                     title="Holiday"
                                 />
                                 <CardContent>
-                                    <Typography variant="body2" color="textSecondary" component="p">
+                                    <Typography variant="body2" color="textSecondary" component="p" >
                                         {showUsername ? (
                                             <Link
                                                 to={`/profiles/${journal.journalAuthor}`}
